@@ -1,5 +1,15 @@
 # <img src="figures/koala.png" alt="CUA Koala" width="50" height="50" /> Toward Trustworthy Computer-Use Agents: Trust Boundaries, Formal Analysis, Evaluation Gaps, and Governance
 
+<p align="center">
+  <a href="#"><img src="https://img.shields.io/badge/Paper-PDF-b31b1b?style=flat-square&logo=adobeacrobatreader&logoColor=white" alt="Paper PDF"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow?style=flat-square" alt="Hugging Face"/></a>
+  <a href="https://github.com/xu-hu-2002/Towards-Thustworthy-Computer-Use-Agent"><img src="https://img.shields.io/github/stars/xu-hu-2002/Towards-Thustworthy-Computer-Use-Agent?style=flat-square&logo=github" alt="GitHub stars"/></a>
+  <a href="https://github.com/xu-hu-2002/Towards-Thustworthy-Computer-Use-Agent/issues"><img src="https://img.shields.io/github/issues/xu-hu-2002/Towards-Thustworthy-Computer-Use-Agent?style=flat-square&logo=github" alt="Issues"/></a>
+  <a href="https://github.com/xu-hu-2002/Towards-Thustworthy-Computer-Use-Agent/blob/main/LICENSE"><img src="https://img.shields.io/github/license/xu-hu-2002/Towards-Thustworthy-Computer-Use-Agent?style=flat-square" alt="License"/></a>
+</p>
+
+> 📄 **Paper:** link coming soon (we're finalising the hosting venue — TechRxiv / TMLR / Zenodo / Hugging Face Dataset). The latest draft and all source `.tex` / `.bib` are available in this repository.
+
 <p align="center"><img src="figures/case_study.png" alt="Figure 1: Case study" width="900" /></p>
 
 <p align="center"><em>Figure 1. A single running case traced through the five trust-breakdown surfaces of our taxonomy, contrasting CUA-specific failure modes with those of a general LLM agent.</em></p>
@@ -637,13 +647,15 @@ _See the paper for discussion; no external citations in this subsection._
 
 ## 🔎 Citation
 
-If you find our survey useful, please cite:
+The paper is not yet publicly hosted on a preprint server. Once it is (arXiv / TechRxiv / TMLR / Zenodo / Hugging Face), the BibTeX entry below will be updated with the correct venue, authors, and URL. In the meantime, you can cite this repository:
 
 ```bibtex
-@article{trustworthycua2026,
-  title   = {Toward Trustworthy Computer-Use Agents: Trust Boundaries, Formal Analysis, Evaluation Gaps, and Governance},
-  author  = {Xu, Hu and collaborators},
-  year    = {2026}
+@misc{trustworthycua2026,
+  title  = {Toward Trustworthy Computer-Use Agents: Trust Boundaries, Formal Analysis, Evaluation Gaps, and Governance},
+  author = {TBD},
+  year   = {2026},
+  note   = {Preprint, hosting venue TBD},
+  url    = {https://github.com/xu-hu-2002/Towards-Thustworthy-Computer-Use-Agent}
 }
 ```
 
