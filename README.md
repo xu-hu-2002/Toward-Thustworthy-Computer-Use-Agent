@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  Xu Hu, Haoming Li, Md Nahiyan Uddin, Sabbir Ahmed, Qiannan Li<sup>&#8224;</sup>, Jessica Jin Ouyang,<br/>
+  Xu Hu, Haoming Li, Sabbir Ahmed, Md Nahiyan Uddin, Qiannan Li<sup>&#8224;</sup>, Jessica Jin Ouyang,<br/>
   Latifur Khan, Feng Chen<sup>*</sup>, Bingzhe Li<sup>*</sup>
 </p>
 
@@ -666,7 +666,7 @@ The paper PDF is hosted on Hugging Face Datasets. If you find this survey useful
 ```bibtex
 @misc{trustworthycua2026,
   title        = {Toward Trustworthy Computer-Use Agents: Trust Boundaries, Formal Analysis, Evaluation Gaps, and Governance},
-  author       = {Hu, Xu and Li, Haoming and Uddin, Md Nahiyan and Ahmed, Sabbir and Li, Qiannan and Ouyang, Jessica Jin and Khan, Latifur and Chen, Feng and Li, Bingzhe},
+  author       = {Hu, Xu and Li, Haoming and Ahmed, Sabbir and Uddin, Md Nahiyan and Li, Qiannan and Ouyang, Jessica Jin and Khan, Latifur and Chen, Feng and Li, Bingzhe},
   year         = {2026},
   howpublished = {The University of Texas at Dallas (UTD) and University of California, Davis (UCD)},
   note         = {Preprint, hosted on Hugging Face Datasets},
