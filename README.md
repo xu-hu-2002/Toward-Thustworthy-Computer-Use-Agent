@@ -1,4 +1,4 @@
-# <img src="figures/overview.png" alt="Overview" width="50" height="50" /> Toward Trustworthy Computer-Use Agents: Trust Boundaries, Formal Analysis, Evaluation Gaps, and Governance
+# <img src="figures/koala.png" alt="CUA Koala" width="50" height="50" /> Toward Trustworthy Computer-Use Agents: Trust Boundaries, Formal Analysis, Evaluation Gaps, and Governance
 
 <p align="center"><img src="figures/case_study.png" alt="Figure 1: Case study" width="900" /></p>
 
