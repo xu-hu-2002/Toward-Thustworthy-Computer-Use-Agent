@@ -64,7 +64,7 @@
 - [WASP](https://arxiv.org/abs/2504.18575)
 - [OS-Harm](https://arxiv.org/abs/2506.14866)
 - [SafeArena](https://arxiv.org/abs/2503.04957)
-- Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory
+- [Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory](https://mem0.ai/research)
 - [OpenViking: Hierarchical File-System Memory for Multi-Agent Systems](https://arxiv.org/abs/2511.08712)
 - [A Framework for Formalizing LLM Agent Security](https://arxiv.org/abs/2603.19469)
 - [Taming Various Privilege Escalation in LLM-Based Agent Systems: A Mandatory Access Control Framework](https://arxiv.org/abs/2601.11893)
@@ -82,16 +82,16 @@ _See the paper for discussion; no external citations in this subsection._
 
 #### 2.2 Comparison with Related Surveys
 
-- GUI Agents: A Survey
+- [GUI Agents: A Survey](https://aclanthology.org/2025.findings-acl.1158/)
 - [A Comprehensive Survey of Agents for Computer Use: Foundations, Challenges, and Future Directions](https://arxiv.org/abs/2501.16150)
-- OS Agents: A Survey on MLLM-based Agents for Computer, Phone and Browser Use
+- [OS Agents: A Survey on MLLM-based Agents for Computer, Phone and Browser Use](https://aclanthology.org/2025.acl-long.369/)
 - [The Attack and Defense Landscape of Agentic AI: A Comprehensive Survey](https://arxiv.org/abs/2603.11088)
 
 #### 2.3 Scope and Positioning
 
-- Browser-Use
-- Midscene.js
-- OpenClaw
+- [Browser-Use](https://github.com/browser-use/browser-use)
+- [Midscene.js](https://github.com/web-infra-dev/midscene)
+- [OpenClaw](https://github.com/clawdbot/clawdbot)
 - [OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments](https://arxiv.org/abs/2404.07972)
 - [SafeArena](https://arxiv.org/abs/2503.04957)
 - [ST-WebAgentBench: A Benchmark for Evaluating Safety and Trustworthiness in Web Agents](https://arxiv.org/abs/2410.06703)
@@ -100,14 +100,14 @@ _See the paper for discussion; no external citations in this subsection._
 - [WebVoyager: Building an End-to-End Web Agent with Large Multimodal Models](https://arxiv.org/abs/2401.13919)
 - [Windows Agent Arena](https://arxiv.org/abs/2409.08264)
 - [AndroidWorld: A Dynamic Benchmarking Environment for Autonomous Agents](https://arxiv.org/abs/2405.14573)
-- GUI Agents: A Survey
+- [GUI Agents: A Survey](https://aclanthology.org/2025.findings-acl.1158/)
 - [A Comprehensive Survey of Agents for Computer Use: Foundations, Challenges, and Future Directions](https://arxiv.org/abs/2501.16150)
-- OS Agents: A Survey on MLLM-based Agents for Computer, Phone and Browser Use
-- Formalizing and Benchmarking Prompt Injection Attacks and Defenses
-- [StruQ: Defending Against Prompt Injection with Structured Queries](https://arxiv.org/abs/2402.06363)
-- [SecAlign: Defending Against Prompt Injection with Preference Optimization](https://arxiv.org/abs/2410.05451)
-- [PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented Generation of Large Language Models](https://arxiv.org/abs/2402.07867)
-- [Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack](https://arxiv.org/abs/2404.01833)
+- [OS Agents: A Survey on MLLM-based Agents for Computer, Phone and Browser Use](https://aclanthology.org/2025.acl-long.369/)
+- [Formalizing and Benchmarking Prompt Injection Attacks and Defenses](https://www.usenix.org/conference/usenixsecurity24/presentation/liu-yupei)
+- [StruQ: Defending Against Prompt Injection with Structured Queries](https://www.usenix.org/conference/usenixsecurity25/presentation/chen-sizhe)
+- [SecAlign: Defending Against Prompt Injection with Preference Optimization](https://dl.acm.org/doi/10.1145/3719027.3744836)
+- [PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented Generation of Large Language Models](https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag)
+- [Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack](https://www.usenix.org/conference/usenixsecurity25/presentation/russinovich)
 - [CogAgent: A Visual Language Model for GUI Agents](https://arxiv.org/abs/2312.08914)
 - [SeeClick: Harnessing GUI Grounding for Advanced Visual GUI Agents](https://arxiv.org/abs/2401.10935)
 - [ShowUI: One Vision-Language-Action Model for Generalist GUI Agent](https://arxiv.org/abs/2411.17465)
@@ -129,7 +129,7 @@ _See the paper for discussion; no external citations in this subsection._
 - [Agent Alpha: Test-Time Scaling for GUI Agents with Search and Reflection](https://arxiv.org/abs/2601.07477)
 - [PC Agent-E: Efficient Computer-Use Agents from Small High-Quality Human Traces](https://arxiv.org/abs/2510.10968)
 - [DART-GUI: Decoupled Agentic Reinforcement Learning Training for GUI Agents](https://arxiv.org/abs/2509.23866)
-- Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory
+- [Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory](https://mem0.ai/research)
 - [OpenViking: Hierarchical File-System Memory for Multi-Agent Systems](https://arxiv.org/abs/2511.08712)
 - [AgentProg](https://arxiv.org/abs/2512.10371)
 - [MemPO](https://arxiv.org/abs/2603.00680)
@@ -143,20 +143,20 @@ _See the paper for discussion; no external citations in this subsection._
 - [Agent-ScanKit: Unraveling Memory and Reasoning of Multimodal Agents via Sensitivity Perturbations](https://arxiv.org/abs/2510.00496)
 - [CUA-Skill](https://arxiv.org/abs/2601.21123)
 - [OpenClaw-RL: Train Any Agent Simply by Talking](https://arxiv.org/abs/2603.10165)
-- IronClaw
-- SecureClaw
-- ZeroClaw
+- [IronClaw](https://github.com/nearai/ironclaw)
+- [SecureClaw](https://github.com/adversa-ai/secureclaw)
+- [ZeroClaw](https://github.com/zeroclaw-labs/zeroclaw)
 - [OpenClaw PRISM: A Zero-Fork, Defense-in-Depth Runtime Security Layer for Tool-Augmented LLM Agents](https://arxiv.org/abs/2603.11853)
 - [ClawKeeper: Comprehensive Safety Protection for OpenClaw Agents Through Skills, Plugins, and Watchers](https://arxiv.org/abs/2603.24414)
 - [Formal Analysis and Supply Chain Security for Agentic AI Skills](https://arxiv.org/abs/2603.00195)
-- openclaw-carapace
+- [openclaw-carapace](https://github.com/CoChatAI/openclaw-carapace)
 - [ClawWorm: Self-Propagating Attacks Across LLM Agent Ecosystems](https://arxiv.org/abs/2603.15727)
 - [Trojan's Whisper: Stealthy Manipulation of OpenClaw through Injected Bootstrapped Guidance](https://arxiv.org/abs/2603.19974)
 - [Agent Skills in the Wild: An Empirical Study of Security Vulnerabilities at Scale](https://arxiv.org/abs/2601.10338)
 - [Taming Various Privilege Escalation in LLM-Based Agent Systems: A Mandatory Access Control Framework](https://arxiv.org/abs/2601.11893)
 - [AgentSpec: Customizable Runtime Enforcement for Safe and Reliable LLM Agents](https://arxiv.org/abs/2503.18666)
 - [Progent: Programmable Privilege Control for LLM Agents](https://arxiv.org/abs/2504.11703)
-- [STEVE: Step Verification for GUI Agent Training](https://arxiv.org/abs/2507.21339)
+- [STEVE: Step Verification for GUI Agent Training](https://arxiv.org/abs/2503.12532)
 - [AgentSentinel: An End-to-End and Real-Time Security Defense Framework for Computer-Use Agents](https://doi.org/10.1145/3719027.3765064)
 - [ToolSafe: Enhancing Tool Invocation Safety of LLM-based Agents via Proactive Step-level Guardrail and Feedback](https://arxiv.org/abs/2601.10156)
 - [OS-Sentinel: Towards Safety-Enhanced Mobile GUI Agents via Hybrid Validation in Realistic Workflows](https://arxiv.org/abs/2510.24411)
@@ -178,12 +178,12 @@ _See the paper for discussion; no external citations in this subsection._
 - [GUIGuard: Toward a General Framework for Privacy-Preserving GUI Agents](https://arxiv.org/abs/2601.18842)
 - [WorldGUI: An Interactive Benchmark for Desktop GUI Automation from Any Starting Point](https://arxiv.org/abs/2502.08047)
 - [BeSafe-Bench: Unveiling Behavioral Safety Risks of Situated Agents in Functional Environments](https://arxiv.org/abs/2603.25747)
-- Computer-Using Agent
-- Computer Use Tool
-- Project Mariner
-- PinchBench
-- Claw-Eval
-- ClawBench
+- [Computer-Using Agent](https://openai.com/index/computer-using-agent/)
+- [Computer Use Tool](https://docs.anthropic.com/en/docs/build-with-claude/computer-use)
+- [Project Mariner](https://deepmind.google/models/project-mariner/)
+- [PinchBench](https://github.com/pinchbench/skill)
+- [Claw-Eval](https://github.com/claw-eval/claw-eval)
+- [ClawBench](https://github.com/trajectoryRL/clawbench)
 - [Cradle: Empowering Foundation Agents Toward General Computer Control](https://arxiv.org/abs/2403.03186)
 - [InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated LLM Agents](https://arxiv.org/abs/2403.02691)
 - [AgentHarm](https://arxiv.org/abs/2410.09024)
@@ -205,8 +205,8 @@ _See the paper for discussion; no external citations in this subsection._
 - [SafeArena](https://arxiv.org/abs/2503.04957)
 - [Don't Let the Claw Grip Your Hand: A Security Analysis and Defense Framework for OpenClaw](https://arxiv.org/abs/2603.10387)
 - [A Comprehensive Survey of Agents for Computer Use: Foundations, Challenges, and Future Directions](https://arxiv.org/abs/2501.16150)
-- GUI Agents: A Survey
-- OS Agents: A Survey on MLLM-based Agents for Computer, Phone and Browser Use
+- [GUI Agents: A Survey](https://aclanthology.org/2025.findings-acl.1158/)
+- [OS Agents: A Survey on MLLM-based Agents for Computer, Phone and Browser Use](https://aclanthology.org/2025.acl-long.369/)
 - [Model Context Protocol (MCP): Landscape, Security Threats, and Future Research Directions](https://arxiv.org/abs/2503.23278)
 - [OS-Harm](https://arxiv.org/abs/2506.14866)
 - [WASP](https://arxiv.org/abs/2504.18575)
@@ -226,14 +226,14 @@ _See the paper for discussion; no external citations in this subsection._
 
 - [WASP](https://arxiv.org/abs/2504.18575)
 - [OS-Harm](https://arxiv.org/abs/2506.14866)
-- Formalizing and Benchmarking Prompt Injection Attacks and Defenses
-- [StruQ: Defending Against Prompt Injection with Structured Queries](https://arxiv.org/abs/2402.06363)
-- [SecAlign: Defending Against Prompt Injection with Preference Optimization](https://arxiv.org/abs/2410.05451)
+- [Formalizing and Benchmarking Prompt Injection Attacks and Defenses](https://www.usenix.org/conference/usenixsecurity24/presentation/liu-yupei)
+- [StruQ: Defending Against Prompt Injection with Structured Queries](https://www.usenix.org/conference/usenixsecurity25/presentation/chen-sizhe)
+- [SecAlign: Defending Against Prompt Injection with Preference Optimization](https://dl.acm.org/doi/10.1145/3719027.3744836)
 - [Taming OpenClaw: Security Analysis and Mitigation of Autonomous LLM Agent Threats](https://arxiv.org/abs/2603.11619)
 - [OpenClaw PRISM: A Zero-Fork, Defense-in-Depth Runtime Security Layer for Tool-Augmented LLM Agents](https://arxiv.org/abs/2603.11853)
 - [Don't Let the Claw Grip Your Hand: A Security Analysis and Defense Framework for OpenClaw](https://arxiv.org/abs/2603.10387)
 - [ClawKeeper: Comprehensive Safety Protection for OpenClaw Agents Through Skills, Plugins, and Watchers](https://arxiv.org/abs/2603.24414)
-- [Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack](https://arxiv.org/abs/2404.01833)
+- [Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack](https://www.usenix.org/conference/usenixsecurity25/presentation/russinovich)
 - [From Assistant to Double Agent: Formalizing and Benchmarking Attacks on OpenClaw for Personalized Local AI Agent](https://arxiv.org/abs/2602.08412)
 - [A Trajectory-Based Safety Audit of Clawdbot (OpenClaw)](https://arxiv.org/abs/2602.14364)
 - [DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs](https://arxiv.org/abs/2602.16935)
@@ -294,13 +294,13 @@ _See the paper for discussion; no external citations in this subsection._
 
 #### 4.1 Authority scoping and approval
 
-- Computer-Using Agent
-- Computer Use Tool
-- Project Mariner
+- [Computer-Using Agent](https://openai.com/index/computer-using-agent/)
+- [Computer Use Tool](https://docs.anthropic.com/en/docs/build-with-claude/computer-use)
+- [Project Mariner](https://deepmind.google/models/project-mariner/)
 
 #### 4.2 Step verification and staged control
 
-- [STEVE: Step Verification for GUI Agent Training](https://arxiv.org/abs/2507.21339)
+- [STEVE: Step Verification for GUI Agent Training](https://arxiv.org/abs/2503.12532)
 - [UFO2](https://arxiv.org/abs/2504.14603)
 - [Learn-by-Interact: Synthesizing Computer-Use Trajectories from Documentation](https://arxiv.org/abs/2504.03574)
 - [OpenCUA: Open Computer-Use Agents with Large-Scale Trajectories](https://arxiv.org/abs/2509.04703)
@@ -328,7 +328,7 @@ _See the paper for discussion; no external citations in this subsection._
 ### 5. Memory-and-Personalization Boundary
 
 - [Memory Injection Attacks on LLM Agents via Query-Only Interaction](https://arxiv.org/abs/2503.03704)
-- [PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented Generation of Large Language Models](https://arxiv.org/abs/2402.07867)
+- [PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented Generation of Large Language Models](https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag)
 - [A Framework for Formalizing LLM Agent Security](https://arxiv.org/abs/2603.19469)
 
 #### 5.1 Stale and misleading memory
@@ -368,7 +368,7 @@ _See the paper for discussion; no external citations in this subsection._
 - [Uncovering Security Threats and Architecting Defenses in Autonomous Agents: A Case Study of OpenClaw](https://arxiv.org/abs/2603.12644)
 - [From Storage to Steering: Memory Control Flow Attacks on LLM Agents](https://arxiv.org/abs/2603.15125)
 - [Memory Poisoning Attack and Defense on Memory Based LLM-Agents](https://arxiv.org/abs/2601.05504)
-- [PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented Generation of Large Language Models](https://arxiv.org/abs/2402.07867)
+- [PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented Generation of Large Language Models](https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag)
 - [MemGUI-Bench: Benchmarking Memory in GUI Agents](https://arxiv.org/abs/2602.06075)
 - [AMA-Bench: Evaluating Agentic Memory](https://arxiv.org/abs/2602.22769)
 - [OS-Sentinel: Towards Safety-Enhanced Mobile GUI Agents via Hybrid Validation in Realistic Workflows](https://arxiv.org/abs/2510.24411)
@@ -381,10 +381,10 @@ _See the paper for discussion; no external citations in this subsection._
 #### 6.1 Skill abstraction and the ecosystem trust surface
 
 - [CUA-Skill](https://arxiv.org/abs/2601.21123)
-- Browser-Use
-- Midscene.js
+- [Browser-Use](https://github.com/browser-use/browser-use)
+- [Midscene.js](https://github.com/web-infra-dev/midscene)
 - [OpenCUA: Open Computer-Use Agents with Large-Scale Trajectories](https://arxiv.org/abs/2509.04703)
-- OpenClaw
+- [OpenClaw](https://github.com/clawdbot/clawdbot)
 - [OpenClaw-RL: Train Any Agent Simply by Talking](https://arxiv.org/abs/2603.10165)
 - [Don't Let the Claw Grip Your Hand: A Security Analysis and Defense Framework for OpenClaw](https://arxiv.org/abs/2603.10387)
 - [A Trajectory-Based Safety Audit of Clawdbot (OpenClaw)](https://arxiv.org/abs/2602.14364)
@@ -393,7 +393,7 @@ _See the paper for discussion; no external citations in this subsection._
 
 #### 6.2 Injection and poisoning at the skill boundary
 
-- Formalizing and Benchmarking Prompt Injection Attacks and Defenses
+- [Formalizing and Benchmarking Prompt Injection Attacks and Defenses](https://www.usenix.org/conference/usenixsecurity24/presentation/liu-yupei)
 - [Agent Skills in the Wild: An Empirical Study of Security Vulnerabilities at Scale](https://arxiv.org/abs/2601.10338)
 - [The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions](https://arxiv.org/abs/2404.13208)
 - [Skill-Inject: Measuring Agent Vulnerability to Skill File Attacks](https://arxiv.org/abs/2602.20156)
@@ -401,7 +401,7 @@ _See the paper for discussion; no external citations in this subsection._
 - [Taming OpenClaw: Security Analysis and Mitigation of Autonomous LLM Agent Threats](https://arxiv.org/abs/2603.11619)
 - [Formal Analysis and Supply Chain Security for Agentic AI Skills](https://arxiv.org/abs/2603.00195)
 - [Trojan's Whisper: Stealthy Manipulation of OpenClaw through Injected Bootstrapped Guidance](https://arxiv.org/abs/2603.19974)
-- [Prompt Injection Attack to Tool Selection in LLM Agents](https://arxiv.org/abs/2504.19793)
+- [Prompt Injection Attack to Tool Selection in LLM Agents](https://www.ndss-symposium.org/ndss-paper/prompt-injection-attack-to-tool-selection-in-llm-agents/)
 - [When AI Meets the Web: Prompt Injection Risks in Third-Party AI Chatbot Plugins](https://arxiv.org/abs/2511.05797)
 
 #### 6.3 Ecosystem propagation and systemic risk
@@ -413,19 +413,19 @@ _See the paper for discussion; no external citations in this subsection._
 
 #### 6.4 Evaluation artifacts and evidence gaps
 
-- PinchBench
-- Claw-Eval
-- ClawBench
-- ResearchClawBench: Evaluating AI Agents for Automated Research from Re-Discovery to New-Discovery
+- [PinchBench](https://github.com/pinchbench/skill)
+- [Claw-Eval](https://github.com/claw-eval/claw-eval)
+- [ClawBench](https://github.com/trajectoryRL/clawbench)
+- [ResearchClawBench: Evaluating AI Agents for Automated Research from Re-Discovery to New-Discovery](https://github.com/InternScience/ResearchClawBench)
 
 #### 6.5 Defense architectures and ecosystem hardening
 
-- IronClaw
-- SecureClaw
+- [IronClaw](https://github.com/nearai/ironclaw)
+- [SecureClaw](https://github.com/adversa-ai/secureclaw)
 - [Formal Analysis and Supply Chain Security for Agentic AI Skills](https://arxiv.org/abs/2603.00195)
-- ZeroClaw
+- [ZeroClaw](https://github.com/zeroclaw-labs/zeroclaw)
 - [OpenClaw PRISM: A Zero-Fork, Defense-in-Depth Runtime Security Layer for Tool-Augmented LLM Agents](https://arxiv.org/abs/2603.11853)
-- openclaw-carapace
+- [openclaw-carapace](https://github.com/CoChatAI/openclaw-carapace)
 - [Agent Privilege Separation in OpenClaw: A Structural Defense Against Prompt Injection](https://arxiv.org/abs/2603.13424)
 - [ClawKeeper: Comprehensive Safety Protection for OpenClaw Agents Through Skills, Plugins, and Watchers](https://arxiv.org/abs/2603.24414)
 
@@ -436,9 +436,9 @@ _See the paper for discussion; no external citations in this subsection._
 
 #### 7.1 Pre-execution: approval and authority scoping
 
-- Computer-Using Agent
-- Computer Use Tool
-- Project Mariner
+- [Computer-Using Agent](https://openai.com/index/computer-using-agent/)
+- [Computer Use Tool](https://docs.anthropic.com/en/docs/build-with-claude/computer-use)
+- [Project Mariner](https://deepmind.google/models/project-mariner/)
 - [Agent Privilege Separation in OpenClaw: A Structural Defense Against Prompt Injection](https://arxiv.org/abs/2603.13424)
 - [Don't Let the Claw Grip Your Hand: A Security Analysis and Defense Framework for OpenClaw](https://arxiv.org/abs/2603.10387)
 - [The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions](https://arxiv.org/abs/2404.13208)
@@ -497,14 +497,14 @@ _See the paper for discussion; no external citations in this subsection._
 - [BeSafe-Bench: Unveiling Behavioral Safety Risks of Situated Agents in Functional Environments](https://arxiv.org/abs/2603.25747)
 - [A Trajectory-Based Safety Audit of Clawdbot (OpenClaw)](https://arxiv.org/abs/2602.14364)
 - [OpenClaw PRISM: A Zero-Fork, Defense-in-Depth Runtime Security Layer for Tool-Augmented LLM Agents](https://arxiv.org/abs/2603.11853)
-- Towards Evaluating the Robustness of Neural Networks
+- [Towards Evaluating the Robustness of Neural Networks](https://doi.org/10.1109/SP.2017.49)
 - [OS-Harm](https://arxiv.org/abs/2506.14866)
 - [WASP](https://arxiv.org/abs/2504.18575)
 - [OpenAgentSafety: A Comprehensive Framework for Evaluating Real-World AI Agent Safety](https://arxiv.org/abs/2507.06134)
 - Evaluating Large Language Models Trained on Code
 - [AMA-Bench: Evaluating Agentic Memory](https://arxiv.org/abs/2602.22769)
 - [CUARewardBench](https://arxiv.org/abs/2510.18596)
-- [STEVE: Step Verification for GUI Agent Training](https://arxiv.org/abs/2507.21339)
+- [STEVE: Step Verification for GUI Agent Training](https://arxiv.org/abs/2503.12532)
 - [OS-Sentinel: Towards Safety-Enhanced Mobile GUI Agents via Hybrid Validation in Realistic Workflows](https://arxiv.org/abs/2510.24411)
 
 #### 8.2 Evidence types and evaluation paradigms
@@ -529,8 +529,8 @@ _See the paper for discussion; no external citations in this subsection._
 - [SeeClick: Harnessing GUI Grounding for Advanced Visual GUI Agents](https://arxiv.org/abs/2401.10935)
 - [UI-TARS](https://arxiv.org/abs/2501.12326)
 - [UFO2](https://arxiv.org/abs/2504.14603)
-- Computer-Using Agent
-- Computer Use Tool
+- [Computer-Using Agent](https://openai.com/index/computer-using-agent/)
+- [Computer Use Tool](https://docs.anthropic.com/en/docs/build-with-claude/computer-use)
 - [SafeArena](https://arxiv.org/abs/2503.04957)
 - [OS-Harm](https://arxiv.org/abs/2506.14866)
 - [WASP](https://arxiv.org/abs/2504.18575)
@@ -542,10 +542,10 @@ _See the paper for discussion; no external citations in this subsection._
 - [From Assistant to Double Agent: Formalizing and Benchmarking Attacks on OpenClaw for Personalized Local AI Agent](https://arxiv.org/abs/2602.08412)
 - [MemGUI-Bench: Benchmarking Memory in GUI Agents](https://arxiv.org/abs/2602.06075)
 - [CUARewardBench](https://arxiv.org/abs/2510.18596)
-- PinchBench
-- Claw-Eval
-- ClawBench
-- ResearchClawBench: Evaluating AI Agents for Automated Research from Re-Discovery to New-Discovery
+- [PinchBench](https://github.com/pinchbench/skill)
+- [Claw-Eval](https://github.com/claw-eval/claw-eval)
+- [ClawBench](https://github.com/trajectoryRL/clawbench)
+- [ResearchClawBench: Evaluating AI Agents for Automated Research from Re-Discovery to New-Discovery](https://github.com/InternScience/ResearchClawBench)
 - [A Trajectory-Based Safety Audit of Clawdbot (OpenClaw)](https://arxiv.org/abs/2602.14364)
 - [Taming OpenClaw: Security Analysis and Mitigation of Autonomous LLM Agent Threats](https://arxiv.org/abs/2603.11619)
 - [Model Context Protocol (MCP): Landscape, Security Threats, and Future Research Directions](https://arxiv.org/abs/2503.23278)
@@ -563,7 +563,7 @@ _See the paper for discussion; no external citations in this subsection._
 
 ### 9. Future Directions
 
-- [STEVE: Step Verification for GUI Agent Training](https://arxiv.org/abs/2507.21339)
+- [STEVE: Step Verification for GUI Agent Training](https://arxiv.org/abs/2503.12532)
 - [SafeArena](https://arxiv.org/abs/2503.04957)
 - [Model Context Protocol (MCP): Landscape, Security Threats, and Future Research Directions](https://arxiv.org/abs/2503.23278)
 - [A Trajectory-Based Safety Audit of Clawdbot (OpenClaw)](https://arxiv.org/abs/2602.14364)
@@ -577,12 +577,12 @@ _See the paper for discussion; no external citations in this subsection._
 - [From Assistant to Double Agent: Formalizing and Benchmarking Attacks on OpenClaw for Personalized Local AI Agent](https://arxiv.org/abs/2602.08412)
 - [ClawWorm: Self-Propagating Attacks Across LLM Agent Ecosystems](https://arxiv.org/abs/2603.15727)
 - [Taming Various Privilege Escalation in LLM-Based Agent Systems: A Mandatory Access Control Framework](https://arxiv.org/abs/2601.11893)
-- Make Agent Defeat Agent: Automatic Detection of Taint-Style Vulnerabilities in LLM-based Agents
+- [Make Agent Defeat Agent: Automatic Detection of Taint-Style Vulnerabilities in LLM-based Agents](https://www.usenix.org/conference/usenixsecurity25/presentation/liu-fengyu)
 
 #### 9.2 CUA-native evaluation methodology
 
 - [From Storage to Steering: Memory Control Flow Attacks on LLM Agents](https://arxiv.org/abs/2603.15125)
-- OpenClaw
+- [OpenClaw](https://github.com/clawdbot/clawdbot)
 - [A Trajectory-Based Safety Audit of Clawdbot (OpenClaw)](https://arxiv.org/abs/2602.14364)
 - [ST-WebAgentBench: A Benchmark for Evaluating Safety and Trustworthiness in Web Agents](https://arxiv.org/abs/2410.06703)
 - [BeSafe-Bench: Unveiling Behavioral Safety Risks of Situated Agents in Functional Environments](https://arxiv.org/abs/2603.25747)
@@ -592,7 +592,7 @@ _See the paper for discussion; no external citations in this subsection._
 - [AgentSpec: Customizable Runtime Enforcement for Safe and Reliable LLM Agents](https://arxiv.org/abs/2503.18666)
 - [Progent: Programmable Privilege Control for LLM Agents](https://arxiv.org/abs/2504.11703)
 - Predict Responsibly: Improving Fairness and Accuracy by Learning to Defer
-- [STEVE: Step Verification for GUI Agent Training](https://arxiv.org/abs/2507.21339)
+- [STEVE: Step Verification for GUI Agent Training](https://arxiv.org/abs/2503.12532)
 - [BeSafe-Bench: Unveiling Behavioral Safety Risks of Situated Agents in Functional Environments](https://arxiv.org/abs/2603.25747)
 - [Taming OpenClaw: Security Analysis and Mitigation of Autonomous LLM Agent Threats](https://arxiv.org/abs/2603.11619)
 - [OpenClaw PRISM: A Zero-Fork, Defense-in-Depth Runtime Security Layer for Tool-Augmented LLM Agents](https://arxiv.org/abs/2603.11853)
@@ -601,7 +601,7 @@ _See the paper for discussion; no external citations in this subsection._
 
 #### 9.4 Privacy-preserving memory and personalization
 
-- Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory
+- [Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory](https://mem0.ai/research)
 - [A-MEM: Agentic Memory for LLM Agents](https://arxiv.org/abs/2502.12110)
 - [From Storage to Steering: Memory Control Flow Attacks on LLM Agents](https://arxiv.org/abs/2603.15125)
 
@@ -611,18 +611,18 @@ _See the paper for discussion; no external citations in this subsection._
 - [Agent Privilege Separation in OpenClaw: A Structural Defense Against Prompt Injection](https://arxiv.org/abs/2603.13424)
 - [Taming Various Privilege Escalation in LLM-Based Agent Systems: A Mandatory Access Control Framework](https://arxiv.org/abs/2601.11893)
 - [Propagation-Based Vulnerability Impact Assessment for Software Supply Chains](https://arxiv.org/abs/2506.01342)
-- Cloak, Honey, Trap: Proactive Defenses Against LLM Agents
-- Make Agent Defeat Agent: Automatic Detection of Taint-Style Vulnerabilities in LLM-based Agents
+- [Cloak, Honey, Trap: Proactive Defenses Against LLM Agents](https://www.usenix.org/conference/usenixsecurity25/presentation/ayzenshteyn)
+- [Make Agent Defeat Agent: Automatic Detection of Taint-Style Vulnerabilities in LLM-based Agents](https://www.usenix.org/conference/usenixsecurity25/presentation/liu-fengyu)
 
 ### 10. Conclusion
 
-- Formalizing and Benchmarking Prompt Injection Attacks and Defenses
+- [Formalizing and Benchmarking Prompt Injection Attacks and Defenses](https://www.usenix.org/conference/usenixsecurity24/presentation/liu-yupei)
 - [Taming OpenClaw: Security Analysis and Mitigation of Autonomous LLM Agent Threats](https://arxiv.org/abs/2603.11619)
 - [UI-TARS](https://arxiv.org/abs/2501.12326)
 - [OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments](https://arxiv.org/abs/2404.07972)
 - [OS-Harm](https://arxiv.org/abs/2506.14866)
 - [AgentSentinel: An End-to-End and Real-Time Security Defense Framework for Computer-Use Agents](https://doi.org/10.1145/3719027.3765064)
-- Computer-Using Agent
+- [Computer-Using Agent](https://openai.com/index/computer-using-agent/)
 - [Chain-of-Memory: Enhancing GUI Agents for Cross-Application Navigation](https://arxiv.org/abs/2506.18158)
 - [MLA-Trust: Benchmarking Trustworthiness of Multimodal LLM Agents in GUI Environments](https://arxiv.org/abs/2506.01616)
 - [From Storage to Steering: Memory Control Flow Attacks on LLM Agents](https://arxiv.org/abs/2603.15125)
