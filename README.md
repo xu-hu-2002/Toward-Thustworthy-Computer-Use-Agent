@@ -7,6 +7,12 @@
 </p>
 
 <p align="center">
+  <a href="https://www.utdallas.edu/"><img src="figures/logos/utd.png" alt="UT Dallas" height="60"/></a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://www.ucdavis.edu/"><img src="figures/logos/ucd.png" alt="UC Davis" height="60"/></a>
+</p>
+
+<p align="center">
   <b>The University of Texas at Dallas (UTD)</b> &nbsp;·&nbsp; <b>University of California, Davis (UCD)</b>
 </p>
 
