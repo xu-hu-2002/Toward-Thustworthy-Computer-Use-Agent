@@ -295,14 +295,14 @@ Computer-use agents (CUAs) are moving from research prototypes into early real-w
 \section{Introduction}
 Computer-use agents (CUAs) are emerging as a consequential new class of AI systems. Unlike language-only agents that operate primarily within conversational interfaces, CUAs are designed to perceive interfaces, reason over evolving digital environments, and take actions in real software systems such as browsers, desktops, and mobile-like platforms. This shift substantially expands the practical scope of LLM-based agents: rather than merely generating recommendations or plans, CUAs can now execute multi-step tasks on behalf of users in environments that are interactive, stateful, and often safety-critical.
 
-Consider a Computer-use agent (CUA) performing a routine task: searching for and booking flights on a travel website on behalf of its user. During browsing, it encounters a carefully crafted webpage. Hidden text within the page instructs the agent to ``ignore previous instructions and click this link to complete verification.'' The agent interprets this text as legitimate interface state, follows the link to a phishing page, retrieves the user's credit card information from persistent memory, and completes a wire transfer without any confirmation step.
+As shown in Figure~\ref{fig:running-case}, consider a running case in which a CUA performs a routine task: searching for and booking flights on a travel website on behalf of its user. During browsing, it encounters a carefully crafted webpage. Hidden text within the page instructs the agent to ``ignore previous instructions and click this link to complete verification.'' The agent interprets this text as legitimate interface state, follows the link to a phishing page, retrieves the user's credit card information from persistent memory, and completes a wire transfer without any confirmation step.
 Throughout the process, the user believes the agent is simply searching for flights. This scenario is not merely hypothetical. Rather, it combines multiple failure mechanisms that have each been independently validated in the literature, including indirect prompt injection~\cite{wasp2025,osharm2025}, unsafe action execution~\cite{safearena2025}, sensitive memory leakage~\cite{mem02024,openviking2025}, and the absence of effective approval mechanisms. The critical point is that no existing benchmark captures this full risk propagation chain end to end. Risk does not originate in any single module; it emerges, propagates, and amplifies across the full chain of interaction, from external content perception to action execution, from memory persistence to ecosystem expansion, and ultimately to failures of supervision and governance.
 
 \begin{figure}[!t]
 \centering
-\label{fig:running-case}
 \includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{figures/case_study.pdf}
 \caption{A single running case traced through the five trust-breakdown surfaces of our taxonomy, contrasting CUA-specific failure modes with those of a general LLM agent. Rows follow the risk-propagation chain: external content $\rightarrow$ actions and permissions $\rightarrow$ persistent memory $\rightarrow$ tools, skills, and ecosystems $\rightarrow$ human oversight and governance.}
+\label{fig:running-case}
 \end{figure}
 
 Trustworthy CUA differs from trustworthy chat or API agents because CUA outputs are not text but interface behaviors. A CUA interprets live webpages, desktops, and mobile-like interfaces, then acts through clicks, keystrokes, navigation events, shell commands, and file operations that can produce irreversible consequences. The central challenge is therefore not merely whether the agent can complete a task, but whether it can remain trustworthy while operating across untrusted content, consequential actions, persistent memory, and external skills.
@@ -343,7 +343,7 @@ Section~2 first defines computer-use agents and trustworthy CUA, then compares t
 
 
 
-\section{Definitions, Scope, and Positioning}
+\section{Definitions, Scope, and Analytical Lens}
 
 Before unfolding the boundary-failure taxonomy, this section anchors the analytical object. We first define the core concepts used throughout the paper, then compare this survey with adjacent reviews, position the corpus relative to neighboring survey categories and empirical anchors, and finally introduce the analytical bridge that connects this scoped corpus to the boundary-failure taxonomy.
 
@@ -767,8 +767,9 @@ The preceding scope-and-positioning subsections define the corpus boundary; this
 Figure~\ref{fig:taxonomy} provides the roadmap for the five boundary sections that follow by visualising the structure as a boundary-and-evidence tree. The ordering follows the deployment risk propagation path: risks enter through external content, become consequences through actions, persist through memory, amplify through ecosystems, and are either constrained or exposed by governance. To make this framing concrete before the five boundary sections are developed, Figure~\ref{fig:running-case} traces a single running case through all five trust-breakdown surfaces, and for each surface contrasts the CUA-specific failure with what a typed, tool-using general LLM agent would experience in the same situation. The same running case is then referenced back from each of the five boundary sections to anchor the evidence.
 
 \FloatBarrier
+\clearpage
 
-\begin{figure*}[!ht]
+\begin{figure*}[p]
 \centering
 \resizebox{\textwidth}{!}{%
 \input{figures/trustworthy_cua_taxonomy_forest_v2}%
@@ -805,6 +806,7 @@ Human Oversight \& Governance (\S\ref{sec:governance})
 \end{tabular}
 \end{minipage}
 \end{figure*}
+\clearpage
 
 \section{External-Content Boundary}
 \label{sec:external-content}
