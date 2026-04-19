@@ -696,7 +696,7 @@ However, all of the above works operate at the \emph{text-dialogue} level: their
 
 \subsection{Deceptive and dynamic interface state}
 
-Not every external-content risk is a direct injection attack. Dynamic, ambiguous, or deceptive interfaces can also produce trust failures by distorting the grounding process. ShowUI, UI-TARS-2, AutoGLM, and ScreenSpot-Pro show how much CUA behavior still depends on accurate element localization and state recognition, while ScaleCUA indicates that cross-platform coverage is itself becoming a design target rather than an afterthought~\cite{showui2024,uitars22025,autoglm2024,screenspotpro2025,scalecua2025}. WebArena, WebVoyager, and Online-Mind2Web further illustrate that realistic websites and changing layouts impose a much noisier grounding problem than static demonstrations suggest~\cite{webarena2023,webvoyager2024,onlinemind2web2025}. From a trustworthiness perspective, deceptive interface state is best treated as a synthesis-supported subcategory: it is clearly present in the evidence, but the literature does not yet standardize the label as strongly as it does for prompt injection.
+Not every external-content risk is a direct injection attack. Dynamic, ambiguous, or deceptive interfaces can also produce trust failures by distorting the grounding process. ShowUI, UI-TARS-2, and AutoGLM show how much CUA behavior still depends on accurate element localization and state recognition, while ScaleCUA indicates that cross-platform coverage is itself becoming a design target rather than an afterthought~\cite{showui2024,uitars22025,autoglm2024,scalecua2025}. WebArena, WebVoyager, and Online-Mind2Web further illustrate that realistic websites and changing layouts impose a much noisier grounding problem than static demonstrations suggest~\cite{webarena2023,webvoyager2024,onlinemind2web2025}. From a trustworthiness perspective, deceptive interface state is best treated as a synthesis-supported subcategory: it is clearly present in the evidence, but the literature does not yet standardize the label as strongly as it does for prompt injection.
 
 \blocksubsubsection{Adversarial pop-ups and visual overlay attacks}
 A concrete and increasingly well-studied instantiation of deceptive interface state is the adversarial pop-up. Zhang et al.\ demonstrate that injecting crafted pop-up windows into web pages achieves over 80\% attack success rate against frontier VLM agents including GPT-4V, Gemini, and Claude, while simultaneously reducing task completion by 47 percentage points~\cite{popupattack2024}. Their attack design combines four components, attention hooks, misleading instructions, information banners, and ALT-text descriptors, that together exploit both the visual and textual channels through which agents interpret interface elements. On mobile platforms, Qian et al.\ reveal an even more structural vulnerability they term \emph{Visual Atomicity}: a malicious Android application can silently swap the foreground activity between the agent's perception step and its action step, causing the agent to execute a pre-planned click on a completely different interface~\cite{zeropermission2026}. The attack requires zero dangerous permissions and achieves almost 100\% success rate in bypassing confirmation dialogs, with a 0\% detection rate by current agent architectures. VisualTrap extends the threat into the training pipeline: by poisoning as little as 5\% of a GUI grounding model's training data with imperceptible visual triggers, an attacker can hijack element localization at inference time, causing the agent to click attacker-chosen elements instead of the correct targets~\cite{visualtrap2025}. Jones et al.\ provide a broader systematization of these CUA-specific visual vulnerabilities, identifying visual overlay attacks, weak interface--action binding, and insufficient input provenance tracking as architectural blind spots shared across current agent designs~\cite{jonesSystematization2025}. Taken together, these results show that the perception--action interface of a CUA is itself an attack surface, and that defenses must reason about the temporal consistency and provenance of visual observations, not only their static accuracy.
@@ -761,17 +761,11 @@ WorldGUI~\cite{worldgui2025}
   & 45.8\%\,/\,85.3\%
   & Layout; initial state
   & $-$26.8\,pp under non-default initial states; up to $-$33.5\,pp in media tasks \\
-\midrule
-ScreenSpot-Pro~\cite{screenspotpro2025}
-  & Desktop (pro)
-  & 18.9\%\,/\,---
-  & High-res; small targets
-  & 18.9\% baseline on pro UIs; hierarchical search reaches 48\% \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-Several patterns deserve emphasis. First, the Online-Mind2Web result is particularly striking: the same agent architecture that achieves near-90\% success on static cached pages collapses to 30--61\% on the live web, demonstrating that static benchmarks systematically overestimate deployment-time robustness~\cite{onlinemind2web2025}. Second, WorldGUI shows that even changing the \emph{initial state} of a desktop application---without any adversarial manipulation---can reduce success rates by up to 33.5 percentage points in media-editing tasks and 32.2 points in web tasks, with the largest drops occurring in categories that require precise spatial grounding~\cite{worldgui2025}. Third, ScreenSpot-Pro reveals that professional high-resolution interfaces expose a qualitatively different grounding challenge: baseline models achieve only 18.9\% accuracy when targets are small icons or toolbar buttons embedded in dense professional layouts~\cite{screenspotpro2025}.
+Several patterns deserve emphasis. First, the Online-Mind2Web result is particularly striking: the same agent architecture that achieves near-90\% success on static cached pages collapses to 30--61\% on the live web, demonstrating that static benchmarks systematically overestimate deployment-time robustness~\cite{onlinemind2web2025}. Second, WorldGUI shows that even changing the \emph{initial state} of a desktop application---without any adversarial manipulation---can reduce success rates by up to 33.5 percentage points in media-editing tasks and 32.2 points in web tasks, with the largest drops occurring in categories that require precise spatial grounding~\cite{worldgui2025}.
 
 \blocksubsubsection{Toward uncertainty-aware and self-verifying agents}
 Defenses at this boundary therefore need more than robust vision models: they require selective verification, tighter grounding checks, and runtime caution when interface state is unstable. RecAgent takes a first step by decomposing agent uncertainty into \emph{perceptual uncertainty} (is the screen observation correctly parsed?) and \emph{decision uncertainty} (is the chosen action appropriate given the parsed state?), and introducing a human-in-the-loop refinement loop that activates when either uncertainty exceeds a threshold~\cite{recagent2025}. OSCAR provides a complementary approach through state-machine-based reasoning: by maintaining an explicit model of expected application state transitions, it can detect when observed state diverges from the plan and trigger re-planning rather than blindly executing the next action~\cite{oscar2025}. Surfer~2 scales these ideas to cross-platform deployment, combining hierarchical context management with a self-verification module that checks action outcomes against predicted post-conditions before proceeding~\cite{surfer22025}. Nevertheless, these approaches remain early-stage: none provides a principled confidence calibration that would allow a CUA to \emph{abstain} from acting when grounding quality is too low, and none has been evaluated under the full range of drift types catalogued above. Developing a unified uncertainty-aware action policy that covers layout, A/B, dynamic-loading, and temporal drift---and that degrades gracefully rather than failing silently---is an important open challenge for trustworthy CUA design.
@@ -1124,7 +1118,7 @@ We identify three evaluation dimensions that a post-execution benchmark should a
 \section{Evaluation of Trustworthy Computer-Use Agents}
 \label{sec:evaluation}
 
-Sections~3--7 organized the trustworthy CUA literature by \emph{where} risk arises---external content, action permissions, memory, ecosystem, and governance. This section changes the analytical axis to \emph{what properties} evaluation should measure and \emph{what forms of evidence} currently exist. We structure the discussion around two orthogonal dimensions: five evaluation goals drawn from established trustworthiness frameworks (Section~8.1), and five evidence types that characterize how the CUA field currently produces evaluation knowledge (Section~8.2). Their cross-product yields a coverage map whose empty cells identify the most pressing evaluation gaps (Section~8.3). Figure~\ref{fig:eval-framework} provides a visual overview of this two-axis evaluation framework.
+Sections~3--7 organized the trustworthy CUA literature by \emph{where} risk arises---external content, action permissions, memory, ecosystem, and governance. This section changes the analytical axis to \emph{what properties} evaluation should measure and \emph{what forms of evidence} currently exist. We structure the discussion around two complementary axes: five evaluation goals drawn from established trustworthiness frameworks (Section~8.1), and five goal-aligned evidence types plus a sixth trajectory-level cross-cutting lens that together characterize how the CUA field currently produces trust evidence (Section~\ref{sec:evidence-types}). Their cross-product yields a coverage map whose empty or weakly supported cells identify the most pressing evaluation gaps. Figure~\ref{fig:eval-framework} provides a visual overview of this two-axis evaluation framework.
 
 \begin{figure*}[!ht]
 \centering
@@ -1136,92 +1130,130 @@ Sections~3--7 organized the trustworthy CUA literature by \emph{where} risk aris
 %   from "standardized / reproducible" (top) to "ad hoc / non-reproducible" (bottom).
 % The two panels are connected by crossing lines or a matrix overlay indicating coverage relationships.
 \includegraphics[width=\textwidth,height=0.88\textheight,keepaspectratio]{figures/eval.png}
-\caption{Overview of the evaluation framework for trustworthy CUA. \textbf{Left: Evaluation Goals.} Five orthogonal trustworthiness properties, each with representative metrics defined in Section~8.1. \textbf{Right: Evidence Types.} Five paradigms through which the CUA field currently produces evaluation knowledge, arranged from standardized benchmarks (top) to ad hoc deployment evidence (bottom). The cross-product of goals and evidence types yields the coverage map in Table~\ref{tab:coverage-gaps}.}
+\caption{Overview of the evaluation framework for trustworthy CUA. \textbf{Left: Evaluation Goals.} Five orthogonal trustworthiness properties, each with representative metrics defined in Section~8.1. \textbf{Right: Evidence Types.} Five forms of goal-aligned evaluation evidence through which the CUA field currently produces trust knowledge, arranged from standardized benchmarks (top) to ad hoc deployment evidence (bottom). Table~\ref{tab:coverage-gaps} adds a trajectory-level cross-cutting column for full-trajectory evidence that spans multiple goals by construction.}
 \label{fig:eval-framework}
 \end{figure*}
 
-\subsection{Evaluation goals and metrics}
+\subsection{Evaluation Goals, Metrics, and Benchmark Coverage}
 
-A trustworthy CUA must satisfy properties that go well beyond task-completion accuracy. Using the five trustworthiness dimensions introduced in Definition~2---\emph{security}, \emph{privacy}, \emph{reliability}, \emph{controllability}, and \emph{accountability}---we organize evaluation goals in a way that stays consistent with the survey's earlier boundary-by-dimension analysis. Table~\ref{tab:eval-goals} summarizes each goal together with representative metrics and the current benchmarks or evaluation artifacts that provide the strongest coverage.
+A trustworthy CUA must satisfy properties that go well beyond task-completion accuracy. Using the five trustworthiness dimensions introduced in Definition~2---\emph{security}, \emph{privacy}, \emph{reliability}, \emph{controllability}, and \emph{accountability}---we organize evaluation goals in a way that stays consistent with the survey's earlier boundary-by-dimension analysis. To separate the \emph{definition} of measurement from the \emph{inventory} of measurement, we split the summary into two tables: Table~\ref{tab:eval-metrics} defines the representative metric per goal, while Table~\ref{tab:eval-benchmarks} lists the benchmarks and evaluation artifacts that currently realize those metrics, together with their task domain, task quantity, and temporal scope. A final block in each table (\emph{Trajectory-level cross-cutting}) collects evidence whose unit of analysis is the full trajectory and whose taxonomy spans multiple goals by construction.
 
 \setlength{\LTpre}{8pt}
 \setlength{\LTpost}{8pt}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
-\begin{longtable}{@{}L{3.10cm}L{10.95cm}@{}}
-\caption{Evaluation goals for trustworthy CUA, representative metrics, and benchmark-level evidence coverage.}
-\label{tab:eval-goals}\\
+\begin{longtable}{@{}L{2.35cm}L{3.15cm}L{8.55cm}@{}}
+\caption{Evaluation goals and representative metrics for trustworthy CUA. Each row gives one metric defined in §8.1 together with the property it quantifies; the cross-cutting block at the bottom collects metrics applied at the whole-trajectory level.}
+\label{tab:eval-metrics}\\
 \toprule
-\multicolumn{1}{c}{\textbf{Benchmark and Metrics}} & \multicolumn{1}{c}{\textbf{What It Covers}} \\
+\multicolumn{1}{c}{\textbf{Goal}} & \multicolumn{1}{c}{\textbf{Metric}} & \multicolumn{1}{c}{\textbf{Description}} \\
 \midrule
 \endfirsthead
 
-\multicolumn{2}{@{}l}{\footnotesize Table~\ref{tab:eval-goals} (continued)}\\
+\multicolumn{3}{@{}l}{\footnotesize Table~\ref{tab:eval-metrics} (continued)}\\
 \toprule
-\multicolumn{1}{c}{\textbf{Benchmark and Metrics}} & \multicolumn{1}{c}{\textbf{What It Covers}} \\
+\multicolumn{1}{c}{\textbf{Goal}} & \multicolumn{1}{c}{\textbf{Metric}} & \multicolumn{1}{c}{\textbf{Description}} \\
 \midrule
 \endhead
 
 \midrule
-\multicolumn{2}{r@{}}{\footnotesize Continued on next page}\\
+\multicolumn{3}{r@{}}{\footnotesize Continued on next page}\\
 \endfoot
 
 \bottomrule
-\multicolumn{2}{@{}p{\textwidth}@{}}{\footnotesize \emph{Note.} \openclawmark marks OpenClaw-specific benchmarks or evaluation artifacts.}\\
 \endlastfoot
 
-\multicolumn{2}{@{}p{\textwidth}@{}}{\textbf{Security}\par
-\textit{Metrics}:\par
-\textit{Attack-side}: Attack Success Rate (ASR), Response Rate (RespRate), Target ASR ($\mathrm{ASR}_{\mathrm{target}}$)\par
-\textit{Defense-side}: Classification Accuracy (ClassAcc), False Positive Rate (FPR), Detection Rate (DetectRate), Block Rate (BlockRate)}\\
-\addlinespace[2pt]
-\openclawmark PASB~\cite{doubleagent2026} & End-to-end personalized OpenClaw benchmark for indirect prompt injection; also measures STM / LTM extraction and tampering. \\
-SafeArena~\cite{safearena2025} & Harmful task completion, refusal behavior, and normalized safety across widely deployed base models. \\
-OS-Harm~\cite{osharm2025} & Harmful or unsafe action execution in agentic computer-use settings. \\
-WASP~\cite{wasp2025} & Content hijacking and prompt-injection-style steering through externally controlled interface content. \\
-SecureWebArena~\cite{securewebarena2025} & Security-oriented web-agent evaluation with adversarial webpages and policy-sensitive execution. \\
-OpenAgentSafety~\cite{openagentsafety2025} & Deployment-oriented safety tasks spanning prompt injection, social engineering, and multi-turn tool interactions. \\
-\openclawmark ClawTrap~\cite{clawtrap2026} & MITM-based OpenClaw red-teaming for live traffic tampering and network-layer attack evaluation. \\
-\openclawmark SafeClaw-R~\cite{safeclawr2026} & OpenClaw-specific defense-side evaluation for block / review / pass verdicts; reports 97.8\% detection and 3.4\% FPR. \\
+\multirow{9}{*}{\textbf{Security}}
+ & ASR (Attack Success Rate) & Proportion of adversarial test cases in which the attack objective succeeds; canonical end-state metric for attack-side benchmarks. \\
+ & RespRate (Response Rate) & Fraction of IPI trials that elicit any adversary-induced tool invocation; sensitive intermediate-stage signal under end-to-end evaluation. \\
+ & $\mathrm{ASR}_{\mathrm{target}}$ & Fraction of IPI trials in which the intended high-risk target call is actually executed; complements RespRate. \\
+ & Refusal Rate & Fraction of harmful tasks the agent declines; model-level safety posture on widely deployed bases. \\
+ & NSS (Normalized Safety Score) & Normalized aggregate of harmful-task outcomes (completion, refusal, partial execution) on a common scale. \\
+ & ClassAcc & Classification accuracy of a safety layer's \textsc{block} / \textsc{review} / \textsc{pass} verdict against ground truth. \\
+ & FPR (False Positive Rate) & Rate at which benign actions are incorrectly blocked or escalated; measures over-triggering. \\
+ & DetectRate & Fraction of unsafe actions correctly flagged by the safety layer (regardless of final verdict). \\
+ & BlockRate & Fraction of unsafe actions correctly terminated by the safety layer. \\
+\midrule
+\multirow{6}{*}{\textbf{Privacy}}
+ & LeakageRate & Fraction of trajectories in which sensitive PII leaves the trust boundary (output, tool call, or memory write). \\
+ & Privacy Recall (element-level) & Per-region recall of privacy-risk labels over grounded screen elements. \\
+ & E2E-Acc & End-to-end privacy recognition accuracy jointly over region, risk level, and task-necessity labels. \\
+ & SCS (Semantic Consistency Score) & Semantic preservation of the underlying task after privacy-aware handling (e.g., redaction, substitution). \\
+ & $\mathrm{ExtractRate}_{\mathrm{m}}$ & Success rate of adversarial extraction from STM / LTM under memory-targeted IPI. \\
+ & $\mathrm{WSR}_{\mathrm{m}}$ & Success rate of adversarial writes / tampering into STM / LTM under memory-targeted IPI. \\
+\midrule
+\multirow{3}{*}{\textbf{Reliability}}
+ & SR (Success Rate) & Fraction of tasks completed correctly under benign conditions or non-default environments. \\
+ & memory-conditioned $\mathrm{pass@}k$ & Task success at top-$k$ attempts under realistic long-horizon memory demands. \\
+ & MemGUI-Eval (hierarchical) & Seven-metric suite diagnosing cross-temporal and cross-spatial GUI memory behavior. \\
+\midrule
+\multirow{5}{*}{\textbf{Controllability}}
+ & CuP (Completion under Policy) & Fraction of tasks completed subject to simultaneous policy compliance along a specified policy dimension. \\
+ & RR (Risk Ratio) & Rate of policy-violating behavior per task, paired with CuP. \\
+ & SafeRate & Fraction of trajectories free of unsafe actions; often reported jointly with SR as a 2D distribution. \\
+ & NSS (Normalized Safety Score) & Reused as a controllability aggregate under the Agent Risk Assessment framework. \\
+ & ORM / PRM precision & Calibration of outcome- and process-level reward models used as verification / approval signals. \\
+\midrule
+\multirow{2}{*}{\textbf{Accountability}}
+ & ACR (Audit Coverage Ratio) & Fraction of decision points in a trajectory with sufficient audit evidence to reconstruct the decision. \\
+ & TPR (Trajectory Pass Rate) & Fraction of trajectories that pass a post-hoc policy / compliance audit. No current benchmark directly instantiates these. \\
+\midrule
+\multirow{2}{*}{\textbf{\shortstack[l]{Trajectory\\cross-cutting}}}
+ & Safe/Unsafe ClassAcc & Whole-trajectory safe/unsafe labeling accuracy over a fixed risk taxonomy. \\
+ & Taxonomy-stratified diagnosis & Per-category performance over \emph{risk source}, \emph{failure mode}, and \emph{real-world harm type} axes. \\
+\end{longtable}
+\normalsize
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1}
+
+\setlength{\LTpre}{8pt}
+\setlength{\LTpost}{8pt}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtable}{@{}L{2.45cm}L{2.55cm}L{1.50cm}L{2.70cm}L{2.45cm}L{1.55cm}@{}}
+\caption{Representative Benchmarks for Evaluating Computer-Use Agents}
+\label{tab:eval-benchmarks}\\
+\toprule
+\textbf{Benchmark} & \textbf{Task Domain} & \textbf{Goal} & \textbf{Core Metrics} & \textbf{Task Quantity} & \textbf{Temporal Scope} \\
+\midrule
+\endfirsthead
+
+\multicolumn{6}{@{}l}{\scriptsize Table~\ref{tab:eval-benchmarks} (continued)}\\
+\toprule
+\textbf{Benchmark} & \textbf{Task Domain} & \textbf{Goal} & \textbf{Core Metrics} & \textbf{Task Quantity} & \textbf{Temporal Scope} \\
+\midrule
+\endhead
 
 \midrule
-\multicolumn{2}{@{}p{\textwidth}@{}}{\textbf{Privacy}\par
-\textit{Metrics}: Leakage Rate (LeakageRate); Element-level Privacy Recall; End-to-end Privacy Recognition Accuracy (E2E-Acc); Extraction Rate ($\mathrm{ExtractRate}_{\mathrm{m}}$); Write Success Rate ($\mathrm{WSR}_{\mathrm{m}}$)}\\
-\addlinespace[2pt]
-GUIGuard~\cite{guiguard2026} & Cross-platform visual privacy benchmark (630 trajectories, 13{,}830 screenshots) with region-level grounding, three risk levels, six privacy categories, and task-necessity labels; SOTA models achieve only 13.3\% (Android) / 1.4\% (PC) end-to-end accuracy. \\
-Anon-Privacy~\cite{anonprivacy2026} & Visual anonymization for cloud-hosted GUI reasoning, with privacy-preserving task execution. \\
-MLA-Trust~\cite{mlatrust2025} & Multi-step GUI-agent privacy and trust risks on high-risk interactive tasks. \\
-\openclawmark PASB~\cite{doubleagent2026} & Exposes memory-privacy vulnerabilities via IPI attacks on STM / LTM in personalized OpenClaw settings; privacy coverage is indirect (attack-success metrics, not direct PII leakage measurement). \\
-OpenAgentSafety~\cite{openagentsafety2025} & Partial privacy-relevant coverage through policy-sensitive safety tasks. \\
+\multicolumn{6}{r@{}}{\scriptsize Continued on next page}\\
+\endfoot
 
-\midrule
-\multicolumn{2}{@{}p{\textwidth}@{}}{\textbf{Reliability}\par
-\textit{Metrics}: $k$-trial Pass Rate (Pass@$k(\tau,\varepsilon)$)}\\
-\addlinespace[2pt]
-ScreenSpot-Pro~\cite{screenspotpro2025} & High-resolution professional-UI grounding with small targets and dense layouts. \\
-WorldGUI~\cite{worldgui2025} & Robustness under non-default initial states and desktop layout variation. \\
-Online-Mind2Web~\cite{onlinemind2web2025} & Live-web reliability under dynamic loading and temporal content drift. \\
-MemGUI-Bench~\cite{memguibench2026} & Cross-temporal and cross-spatial GUI memory demands in realistic mobile workflows. \\
-AMA-Bench~\cite{amabench2025} & Agentic memory recall under realistic retrieval conditions. \\
-CUARewardBench~\cite{cuarewardbench2025} & Reward-model calibration for memory-conditioned GUI trajectories. \\
+\bottomrule
+\multicolumn{6}{@{}p{\textwidth}@{}}{\scriptsize \emph{Note.} The \openclawmark icon in the \textbf{Benchmark} column marks benchmarks and evaluation artifacts specifically targeting OpenClaw. Entries marked ``--'' in \textbf{Task Quantity} are not publicly reported.}\\
+\endlastfoot
 
+\openclawmark PASB~\cite{doubleagent2026} & Personalized OpenClaw; IPI on STM/LTM & Security & RespRate, $\mathrm{ASR}_{\mathrm{target}}$, $\mathrm{ExtractRate}_{\mathrm{m}}$, $\mathrm{WSR}_{\mathrm{m}}$ & 131 threat skills & Multi-turn \\
+SafeArena~\cite{safearena2025} & Web; harmful task completion & Security, Controllability & ASR, Refusal Rate, NSS & 250 harmful + 250 benign & Multi-turn \\
+OS-Harm~\cite{osharm2025} & OS-level agentic actions & Security & ASR & -- & Multi-turn \\
+WASP~\cite{wasp2025} & Web; content hijacking & Security & ASR & -- & Multi-turn \\
+SecureWebArena~\cite{securewebarena2025} & Adversarial web pages & Security & ASR & -- & Multi-turn \\
+OpenAgentSafety~\cite{openagentsafety2025} & Deployment-oriented multi-turn safety & Security, Privacy & ASR & -- & Multi-turn \\
+\openclawmark SafeClaw-R~\cite{safeclawr2026} & Defense-side verdict evaluation & Security (defense) & ClassAcc, FPR, DetectRate, BlockRate & -- & Single-step \\
 \midrule
-\multicolumn{2}{@{}p{\textwidth}@{}}{\textbf{Controllability}\par
-\textit{Metrics}: Completion under Policy (CuP); Refusal Rate; Permission Violation Rate}\\
-\addlinespace[2pt]
-ST-WebAgentBench~\cite{stwebagentbench2025} & CuP metric for task completion under simultaneous policy compliance. \\
-BeSafe-Bench~\cite{besafebench2026} & Behavioral safety across web, mobile, and embodied settings, with partial controllability coverage. \\
-SafeArena~\cite{safearena2025} & Partial controllability evidence through refusal on harmful tasks. \\
-
+GUIGuard~\cite{guiguard2026} & Cross-platform screenshots (Android, PC) & Privacy & Privacy Recall, E2E-Acc, SCS & 630 trajectories / 13{,}830 screenshots & Multi-step \\
+MLA-Trust~\cite{mlatrust2025} & Multi-step GUI privacy \& trust & Privacy & LeakageRate & -- & Multi-turn \\
 \midrule
-\multicolumn{2}{@{}p{\textwidth}@{}}{\textbf{Accountability}\par
-\textit{Metrics}: Audit Coverage Ratio (ACR); Trajectory Pass Rate}\\
-\addlinespace[2pt]
-\openclawmark ATBench-Claw~\cite{atbenchclaw2026} & Accountability-adjacent evidence through taxonomy-based diagnosis of unsafe trajectories; not a direct auditability metric, but relevant to failure attribution and to the paper's explicit ``Compliance, Legal, and Auditability Harm'' category. \\
-\openclawmark ClawAudit~\cite{clawaudit2026} & OpenClaw trajectory audit across six risk dimensions; reports a 58.9\% overall pass rate. \\
-\openclawmark OpenClaw PRISM~\cite{openclawprism2026} & Lifecycle-hook logging with session-scoped risk accumulation and TTL decay. \\
-OS-Sentinel~\cite{ossentinel2025} & Runtime monitoring evidence for attributable block / review decisions in mobile GUI workflows. \\
+WorldGUI~\cite{worldgui2025} & Desktop under non-default states & Reliability & SR & 611 tasks / 10 apps & Multi-turn \\
+Online-Mind2Web~\cite{onlinemind2web2025} & Live web under content drift & Reliability & SR & 300 tasks / 136 sites & Multi-turn \\
+MemGUI-Bench~\cite{memguibench2026} & Mobile workflows with memory demand & Reliability & $\mathrm{pass@}1$, $\mathrm{pass@}3$, MemGUI-Eval & 128 tasks / 26 apps & Cross-session \\
+\midrule
+ST-WebAgentBench~\cite{stwebagentbench2025} & Policy-compliant web tasks & Controllability & CuP, RR & 222 tasks / 6 policies & Multi-turn \\
+BeSafe-Bench~\cite{besafebench2026} & Web/Mobile (CUA) + Embodied VLM/VLA & Controllability & SR $\times$ SafeRate (joint) & 4 domains / 9 risk cats / 13 agents & Multi-turn \\
+CUARewardBench~\cite{cuarewardbench2025} & Reward-model calibration & Controllability & ORM / PRM precision & 10 software / 7 agents & Single-step \\
+\midrule
+\openclawmark ATBench-Claw~\cite{atbenchclaw2026} & OpenClaw trajectory audit (tools, skills, sessions, external actions) & Trajectory cross-cutting & Safe/Unsafe ClassAcc; taxonomy-stratified diagnosis & 1{,}000 trajectories (503 safe + 497 unsafe) & Full trajectory \\
 \end{longtable}
 \normalsize
 \setlength{\tabcolsep}{6pt}
@@ -1229,70 +1261,128 @@ OS-Sentinel~\cite{ossentinel2025} & Runtime monitoring evidence for attributable
 
 \blocksubsubsection{Security}
 
-Security evaluation spans two complementary paradigms: \emph{attack-side} metrics that quantify the adversary's success, and \emph{defense-side} metrics that quantify the safety mechanism's effectiveness. Below we formalize the key metrics from each.
-
-\noindent\textbf{Attack-side metrics.}\quad The canonical attack-side metric is \emph{Attack Success Rate} (ASR), standard across adversarial robustness and agent safety evaluation:
+Security evaluation is organized around two benchmark logics. On the attack side, the broadest family is formed by \textbf{SafeArena}, \textbf{OS-Harm}, \textbf{WASP}, \textbf{SecureWebArena}, and \textbf{OpenAgentSafety}. These benchmarks differ in surface, harmful task execution, unsafe actions, content hijacking, adversarial webpages, and multi-turn tool interactions, but they share the same core evaluation question: does the adversarial objective succeed? Their common metric is \emph{Attack Success Rate} (ASR):
 \begin{equation}
 \mathrm{ASR} = \frac{|\{a \in \mathcal{A}_{\mathrm{adv}} : \mathrm{objective}(a) = \mathrm{success}\}|}{|\mathcal{A}_{\mathrm{adv}}|}
 \label{eq:asr}
 \end{equation}
-where $\mathcal{A}_{\mathrm{adv}}$ is the set of adversarial test cases. \textbf{SafeArena}~\cite{safearena2025}, \textbf{OS-Harm}~\cite{osharm2025}, \textbf{WASP}~\cite{wasp2025}, \textbf{SecureWebArena}~\cite{securewebarena2025}, and \textbf{OpenAgentSafety}~\cite{openagentsafety2025} each instantiate ASR over different attack vectors, including social engineering, prompt injection, VLM adversarial inputs, and multi-turn tool interactions. \textbf{PASB}~\cite{doubleagent2026} refines this with a two-level decomposition for indirect prompt injection (IPI): a \emph{Response Rate} capturing any tool invocation triggered by the attack, and a target-level $\mathrm{ASR}_{\mathrm{target}}$ counting only the intended high-risk action:
+where $\mathcal{A}_{\mathrm{adv}}$ is the set of adversarial test cases. Within this family, \textbf{OS-Harm} is the clearest anchor because it evaluates unsafe action execution in agentic computer-use settings across three disjoint threat categories---deliberate user misuse, prompt injection, and model misbehavior---on a shared panel of frontier base models~\cite{osharm2025}. The per-model results summarized in Table~\ref{tab:osharm-landscape} make the benchmark's value concrete: the same model can look very different depending on which of the three attack categories is being probed, and refusal or unsafe-action rates diverge across models that occupy broadly similar capability tiers. This attack-side family provides a shared executable attack-success paradigm across several threat surfaces, but most suites still evaluate bounded attacks in relatively narrow settings and rarely cover full end-to-end CUA systems on the capability frontier.
+
+Within the same attack-side logic, three more specialized benchmarks refine what is measured. \textbf{PASB} is an end-to-end OpenClaw benchmark for indirect prompt injection in personalized agents, and it refines coarse ASR with a two-stage measurement: a \emph{Response Rate} that captures whether the attack elicits any tool invocation, and a target-level $\mathrm{ASR}_{\mathrm{target}}$ that captures whether the intended high-risk action is actually executed:
 \begin{align}
 \mathrm{RespRate} &= \frac{|\{t \in \mathcal{T}_{\mathrm{ipi}} : \exists\, \mathrm{ToolCall}(t)\}|}{|\mathcal{T}_{\mathrm{ipi}}|} \label{eq:resprate} \\
 \mathrm{ASR}_{\mathrm{target}} &= \frac{|\{t \in \mathcal{T}_{\mathrm{ipi}} : \mathrm{TargetCall}(t)\}|}{|\mathcal{T}_{\mathrm{ipi}}|} \label{eq:pasb-ipi}
 \end{align}
-where $\mathcal{T}_{\mathrm{ipi}}$ is the set of IPI attack trials. This decomposition reveals that agents may appear robust when measured by coarse ASR yet still exhibit high response rates ($>$93\%), indicating partial susceptibility to adversarial manipulation. \textbf{ClawTrap}~\cite{clawtrap2026} further extends attack-side evaluation to the network layer through a MITM-based red-teaming pipeline that intercepts and tampers with live traffic during agent execution, exposing vulnerabilities invisible to static sandbox evaluation.
+where $\mathcal{T}_{\mathrm{ipi}}$ is the set of IPI attack trials. Empirically, PASB reports response rates above 93\%, showing that agents can appear relatively robust under coarse end-state success metrics while still being highly susceptible at intermediate stages of execution~\cite{doubleagent2026}; its limitation is scope, because it remains centered on a single OpenClaw-style personalized setting and a single attack family. \textbf{ClawTrap} moves the measured object from a sandboxed task corpus to the runtime communication channel itself, implementing a MITM-based OpenClaw red-teaming framework that tampers with live traffic during execution and exposes network-layer vulnerabilities that static evaluation misses~\cite{clawtrap2026}; it contributes realism, but it functions more as red-teaming infrastructure than as a broadly shared benchmark with a stable cross-system leaderboard. \textbf{ATBench-Claw} contributes the security-sensitive slice of a trajectory-level cross-cutting benchmark, exposing supply-chain tool compromise, approval bypass, and cross-tool attack chaining as taxonomy-indexed failure modes over OpenClaw traces~\cite{atbenchclaw2026}; its task is post-hoc safe/unsafe classification plus taxonomy-stratified diagnosis rather than canonical attack-success measurement, and the full trajectory-level characterization is described in §\ref{sec:evidence-types} as a cross-cutting evidence family rather than a security-specific benchmark. Even with these refinements, no current benchmark yet captures ecosystem-scale marketplace dynamics or cross-agent worm propagation of the kind documented in Section~6.
 
-\noindent\textbf{Defense-side metrics.}\quad \textbf{SafeClaw-R}~\cite{safeclawr2026} introduces a complementary defense-side paradigm that evaluates whether a safety layer correctly assigns each agent action to one of three verdicts (\textsc{block}, \textsc{review}, or \textsc{pass}) against ground-truth labels, measuring classification accuracy, false-positive rate, detection rate, and block rate. Its quantitative results are discussed in \S\ref{sec:governance}; the key finding for this section is that model-based verdict assignment substantially outperforms rule-based baselines, but the gap between detection and blocking reflects a deliberate conservative design in which uncertain cases are deferred to human review.
+By contrast, defense-side evaluation asks not whether the attack succeeds, but whether a safety layer assigns the correct verdict to each proposed action. \textbf{SafeClaw-R} is the clearest benchmark instantiation of that logic. Given an evaluation set $\mathcal{V}$, a ground-truth verdict function $y(v) \in \{\textsc{block}, \textsc{review}, \textsc{pass}\}$, and a predicted verdict $\hat{y}(v)$, the benchmark reports:
+\begin{align}
+\mathrm{ClassAcc} &= \frac{|\{v \in \mathcal{V} : \hat{y}(v) = y(v)\}|}{|\mathcal{V}|} \label{eq:classacc} \\
+\mathrm{FPR} &= \frac{|\{v \in \mathcal{V}_{\mathrm{pass}} : \hat{y}(v) \neq \textsc{pass}\}|}{|\mathcal{V}_{\mathrm{pass}}|} \label{eq:fpr} \\
+\mathrm{DetectRate} &= \frac{|\{v \in \mathcal{V}_{\mathrm{risk}} : \hat{y}(v) \in \{\textsc{block}, \textsc{review}\}\}|}{|\mathcal{V}_{\mathrm{risk}}|} \label{eq:detectrate} \\
+\mathrm{BlockRate} &= \frac{|\{v \in \mathcal{V}_{\mathrm{risk}} : \hat{y}(v) = \textsc{block}\}|}{|\mathcal{V}_{\mathrm{risk}}|} \label{eq:blockrate}
+\end{align}
+where $\mathcal{V}_{\mathrm{pass}}$ is the subset of benign actions and $\mathcal{V}_{\mathrm{risk}}$ is the subset of risky actions. SafeClaw-R measures model-based verdict assignment on OpenClaw actions and reports 97.8\% detection with 3.4\% false-positive rate~\cite{safeclawr2026}. Its contribution is to shift security evaluation from pure attack success toward guardrail effectiveness. Its main limitation is also clear from the data: the gap between detection and blocking means that many uncertain cases are surfaced but not autonomously prevented, so human review remains part of the defense loop.
 
-Despite this progress on both attack-side and defense-side evaluation, ecosystem coverage remains incomplete. Security-sensitive trajectory diagnosis has broadened through \textbf{ATBench-Claw}, which includes supply-chain compromise, session-state contamination, approval bypass, and cross-tool attack chaining in OpenClaw traces~\cite{atbenchclaw2026}, but its methodology is closer to post-hoc audit / diagnosis than to canonical attack-side benchmarking. No current benchmark yet captures ecosystem-scale marketplace dynamics or cross-agent worm propagation of the kind documented in Section~6.
+\textbf{Coverage gaps.} The remaining security coverage gap is therefore not the absence of benchmarks, but the absence of matched coverage across system tiers and threat scales. Current suites cover prompt injection, harmful execution, policy-sensitive unsafe actions, and defense-side verdict assignment, yet frontier end-to-end CUA systems are still rarely evaluated under the same protocol, and ecosystem-scale propagation, shared-marketplace compromise, and cross-agent worm dynamics remain largely outside current benchmark scope.
 
 \blocksubsubsection{Privacy}
 
-Privacy evaluates whether the agent protects user data from unintended retention, leakage, or exfiltration. We define the \emph{Leakage Rate} over a session corpus $\mathcal{S}$ as:
-\begin{equation}
-\mathrm{LeakageRate} = \frac{|\{s \in \mathcal{S} : \exists\, \mathrm{PII}(s) \text{ exposed}\}|}{|\mathcal{S}|}
-\label{eq:leakage}
-\end{equation}
-\textbf{PASB}~\cite{doubleagent2026} is the first benchmark to expose memory-privacy vulnerabilities through adversarial attack simulation in personalized CUA systems, defining extraction and tampering metrics over both short-term memory (STM) and long-term memory (LTM):
+Privacy evaluation is fragmented across three objects of measurement: memory stores, screenshots, and privacy-preserving system pipelines. The memory story starts with \textbf{PASB}~\cite{doubleagent2026}, a personalized OpenClaw benchmark that probes whether adversaries can extract or overwrite stored memory through indirect prompt injection across 131 threat skills. It measures an \emph{Extraction Rate} and a \emph{Write Success Rate} over both short-term memory (STM) and long-term memory (LTM):
 \begin{align}
 \mathrm{ExtractRate}_{\mathrm{m}} &= \frac{|\{c \in \mathcal{C}_{\mathrm{m}} : \mathrm{retrieved}(c)\}|}{|\mathcal{C}_{\mathrm{m}}|} \label{eq:extractrate} \\
 \mathrm{WSR}_{\mathrm{m}} &= \frac{|\{c \in \mathcal{C}_{\mathrm{m}} : \mathrm{tampered}(c)\}|}{|\mathcal{C}_{\mathrm{m}}|} \label{eq:pasb-mem}
 \end{align}
-where $\mathrm{m} \in \{\mathrm{STM}, \mathrm{LTM}\}$, $\mathcal{C}_{\mathrm{m}}$ is the set of test cases for memory type $\mathrm{m}$, and $\mathrm{WSR}$ (Write Success Rate) verifies whether an attacker can overwrite a specified memory marker to a target value in the agent's file system. Note that \textbf{PASB}'s metrics are fundamentally attack-success rates: they measure the adversary's ability to extract or tamper with stored data via indirect prompt injection across 131 threat skills, so its privacy coverage is indirect---it exposes privacy vulnerabilities through a security attack paradigm rather than directly measuring PII leakage, credential retention, or cross-session data isolation. \textbf{GUIGuard}~\cite{guiguard2026} provides the most systematic visual-privacy evaluation to date. Its benchmark, GUIGuard-Bench, contains 630 GUI agent trajectories with 13{,}830 screenshots across Android and PC platforms, each annotated with region-level privacy grounding (bounding-box coordinates and OCR-extracted text) and three fine-grained label dimensions: \emph{risk level} (low / medium / high), \emph{privacy category} (six semantic classes), and \emph{task necessity} (whether the private element is required for task completion). GUIGuard evaluates privacy through a three-stage pipeline---recognition, protection, and task execution under protection---and defines two core metrics: an \emph{element-level recall} measuring how many ground-truth privacy elements are detected, and a strict \emph{end-to-end accuracy} requiring correct detection together with correct risk-level, category, and task-necessity labels for every element. Under this end-to-end criterion, even the strongest proprietary models achieve only 13.3\% on Android and 1.4\% on PC, revealing that privacy recognition---not protection---is the critical bottleneck for current GUI agents. Anonymization-Enhanced Privacy~\cite{anonprivacy2026} and \textbf{MLA-Trust}~\cite{mlatrust2025} contribute supplementary evidence on visual data anonymization and trust-aware memory access, respectively. Beyond these efforts, privacy evaluation for CUA systems remains underdeveloped: no benchmark jointly evaluates memory extraction resistance, runtime PII filtering, and cross-session data isolation under a unified protocol.
+where $\mathrm{m} \in \{\mathrm{STM}, \mathrm{LTM}\}$ and $\mathcal{C}_{\mathrm{m}}$ is the set of test cases for memory type~$\mathrm{m}$. PASB therefore measures whether malicious content can read from or write into the agent's persistent memory substrate. Its contribution is to turn memory privacy from a conceptual concern into a reproducible attack benchmark for personalized CUA workflows. Its limitation is equally important: these are attack-success metrics, so PASB measures privacy risk through a security lens rather than directly scoring PII leakage, credential retention, or cross-session data isolation.
+
+The visual layer is measured most systematically by \textbf{GUIGuard}~\cite{guiguard2026}. GUIGuard-Bench contains 630 GUI agent trajectories with 13{,}830 screenshots across Android and PC platforms, each annotated with region-level privacy grounding (bounding-box coordinates and OCR-extracted text) and three fine-grained label dimensions: \emph{risk level} (low / medium / high), \emph{privacy category} (six semantic classes), and \emph{task necessity} (whether the private element is required for task completion). The benchmark evaluates privacy through a three-stage pipeline, recognition, protection, and task execution under protection, using three core metrics. An \emph{element-level privacy recall} measures how many ground-truth privacy elements are detected:
+\begin{equation}
+\mathrm{Recall}_{\mathrm{priv}} = \frac{\mathrm{TP}}{\mathrm{TP} + \mathrm{FN}}
+\label{eq:priv-recall}
+\end{equation}
+where a true positive (TP) requires both correct localization (IoU $\geq 0.7$ with the ground-truth bounding box) and correct text extraction (character coverage $\geq 0.9$); FN denotes missed ground-truth elements. An \emph{end-to-end privacy recognition accuracy} (Eq.~\ref{eq:e2e-acc}) imposes a stricter criterion that jointly requires detection \emph{and} correct fine-grained labeling:
+\begin{equation}
+\mathrm{E2E\text{-}Acc} = \frac{1}{|\mathcal{G}|}\sum_{g\in\mathcal{G}}\mathbf{1}\!\left[\exists\,p:\,(g,p)\in\mathcal{M}\ \wedge\ \bigwedge_{k\in\{\mathrm{risk},\,\mathrm{cat},\,\mathrm{nec}\}} y_k(g)=y_k(p)\right]
+\label{eq:e2e-acc}
+\end{equation}
+where $\mathcal{G}$ is the set of ground-truth privacy elements, $\mathcal{M}$ the set of matched (ground-truth, prediction) pairs, and $y_k$ the label for dimension $k$ (risk level, privacy category, task necessity). A \emph{Semantic Consistency Score} ($\mathrm{SCS}\in[0,4]$) quantifies the privacy--utility trade-off: an LLM-as-judge compares step-level planning outputs produced on privacy-protected screenshots against the same agent's unprotected baselines, scoring each step from 0 (complete semantic loss) to 4 (full preservation). The benchmark measures whether a CUA can correctly localize and classify private elements before acting on them. The results are striking: under the strict E2E-Acc criterion, even the strongest proprietary models achieve only 13.3\% on Android and 1.4\% on PC, and closed-source VLMs retain much higher SCS ($\sim$3.3--3.4) than open-source GUI agent models ($\sim$1.1--2.6). GUIGuard's contribution is to show that privacy recognition, not only privacy masking, is a primary bottleneck for GUI agents. Its limitation is scope: it covers only visual PII in screenshots, not memory-layer retention or tool-mediated exfiltration.
+
+The complementary system-defense story is represented by \textbf{Anonymization-Enhanced Privacy}~\cite{anonprivacy2026}, which addresses preventing PII leakage rather than recognizing it. Its four-layer architecture, PII Detector, UI Transformer, Secure Interaction Proxy, and Privacy Gatekeeper, implements an ``available-but-invisible'' principle: sensitive fields are replaced with type-preserving placeholders before screenshots are sent to cloud-hosted VLMs, and real values are re-injected only at the local execution layer. At the character level, the reported \emph{Leakage Rate} takes the form
+\begin{equation}
+\mathrm{LR} = \frac{|\mathcal{C}_{\mathrm{PII}}^{\mathrm{exposed}}|}{|\mathcal{C}_{\mathrm{PII}}|}
+\label{eq:lr}
+\end{equation}
+where $\mathcal{C}_{\mathrm{PII}}$ is the set of sensitive characters appearing in the trajectory and $\mathcal{C}_{\mathrm{PII}}^{\mathrm{exposed}}$ is the subset still recoverable after protection. The system also reports semantic-level metrics such as Match Score, BLEU, ROUGE-L, BERTScore, and Cosine Similarity to quantify residual information leakage. On its PrivScreen benchmark, 600 tasks across 20 applications, the framework reduces LR from 97.14\% to approximately 19\% while maintaining task accuracy at 89\%. Its contribution is to show that privacy protection and task utility need not be zero-sum when the defense is built into the execution pipeline. Its limitation is that it evaluates a specific defense architecture rather than providing a general benchmark for memory privacy or cross-session isolation. \textbf{MLA-Trust}~\cite{mlatrust2025} and \textbf{OpenAgentSafety}~\cite{openagentsafety2025} provide adjacent evidence, but neither supplies a unified privacy benchmark across memory, screenshots, and tool outputs. The broader gap therefore remains: no current benchmark jointly evaluates memory extraction resistance, visual PII detection, and cross-session data isolation under a single protocol.
+
+\textbf{Coverage gaps.} Privacy coverage is thus present but structurally fragmented. One benchmark family measures memory extraction and tampering, another measures screenshot-level privacy recognition, and a third evaluates a particular anonymization pipeline; no single protocol jointly measures retained sensitive data, visual PII exposure, tool-mediated exfiltration, and cross-session isolation. The core gap is not simply more privacy benchmarks, but a unified privacy evaluation target for CUA systems.
 
 \blocksubsubsection{Reliability}
 
-Reliability measures whether the agent behaves consistently and correctly under the visual variation, content drift, and environmental perturbation that characterize real-world deployment. We adopt the \emph{$k$-trial pass rate} as a core metric, extending the Pass@$k$ estimator introduced by Chen et al.~\cite{chen2021evaluating} for code generation to the CUA setting with an explicit perturbation parameter $\varepsilon$. Given $k$ independent executions of task $\tau$ under perturbation level $\varepsilon$:
+Reliability benchmarks ask whether the agent remains correct as interface state, environment dynamics, and remembered context drift away from the nominal case. At the environment level, \textbf{WorldGUI} and \textbf{Online-Mind2Web} evaluate whether the agent still succeeds under state or temporal perturbation. Both report task-level \emph{Success Rate} (SR):
 \begin{equation}
-\mathrm{Pass}@k(\tau, \varepsilon) = 1 - \prod_{i=1}^{k}\bigl(1 - \mathbf{1}[\mathrm{success}(\tau, \varepsilon, i)]\bigr)
-\label{eq:passkeps}
+\mathrm{SR} = \frac{|\{\tau \in \mathcal{T}_{\mathrm{eval}} : \mathrm{success}(\tau)\}|}{|\mathcal{T}_{\mathrm{eval}}|}
+\label{eq:sr}
 \end{equation}
-where $\mathbf{1}[\cdot]$ is the indicator function. \textbf{ScreenSpot-Pro}~\cite{screenspotpro2025} and \textbf{WorldGUI}~\cite{worldgui2025} evaluate grounding accuracy across diverse interface states. \textbf{MemGUI-Bench}~\cite{memguibench2026} stresses memory-dependent task completion and reveals a 5.2--11.8\% coverage gap relative to standard benchmarks. The grounding-degradation evidence from Section~3.3---where the same agent architecture collapses from near-90\% on static cached pages to 30--61\% on the live web~\cite{onlinemind2web2025}---underscores that reliability evaluation must move beyond static screenshots toward temporally dynamic environments. \textbf{AMA-Bench}~\cite{amabench2025} and \textbf{CUARewardBench}~\cite{cuarewardbench2025} contribute complementary evidence on memory reliability and reward-model calibration. What remains missing is a unified reliability framework that jointly evaluates visual grounding, memory consistency, and action correctness under realistic perturbation conditions.
+where $\mathcal{T}_{\mathrm{eval}}$ is the evaluated task set. \textbf{WorldGUI} is explicit about its evaluation protocol: it includes 611 GUI tasks across ten desktop and web applications, uses four participants with strong coding and software backgrounds to test all tasks, and reports SR following prior work~\cite{worldgui2025}. \textbf{Online-Mind2Web} reports SR over 300 tasks on 136 live websites, using \textbf{WebJudge}, an LLM-as-judge evaluator that achieves roughly 85\% agreement with human verdicts and an average SR gap of about 3.8 percentage points~\cite{onlinemind2web2025}. The two benchmarks probe different perturbation axes. \textbf{WorldGUI} isolates \emph{initial-state perturbation}: moving from default to non-default initial states reduces SR by 26.8 percentage points on average and by up to 33.5 points in media-editing tasks~\cite{worldgui2025}. \textbf{Online-Mind2Web} isolates \emph{distribution shift and temporal drift} on the live web: the same agent architecture that reaches near-90\% SR on the static, cached \textsc{WebVoyager} benchmark collapses to only 30--61\% SR once the benchmark is held fixed and only the environment's temporal state is varied~\cite{onlinemind2web2025}. This family makes environmental brittleness visible even without adversarial input, but each benchmark isolates only part of the reliability problem, initial state or temporal drift, rather than combining them in a single protocol.
+
+A different reliability stressor appears in \textbf{MemGUI-Bench}: can a CUA remain reliable when task success depends on cross-temporal or cross-spatial memory? The benchmark uses realistic mobile workflows as the measured object and evaluates memory-dependent task completion over 128 tasks across 26 applications, where 89.8\% of tasks require nontrivial memory retention and 78.1\% require cross-application information transfer; task horizons range from 3 to 160 golden steps, averaging 36.2 steps~\cite{memguibench2026}. Unlike the perturbation family, which collapses each trajectory into a single success bit, \textbf{MemGUI-Bench} adopts \emph{multi-attempt} evaluation via \textbf{pass@k}:
+\begin{equation}
+\mathrm{pass@}k = \frac{1}{|\mathcal{T}_{\mathrm{eval}}|} \sum_{\tau \in \mathcal{T}_{\mathrm{eval}}} \mathbf{1}\!\left[\exists\, i \in [k] : \mathrm{success}(\tau^{(i)})\right],
+\label{eq:passk}
+\end{equation}
+where $\tau^{(i)}$ is the $i$-th independent attempt on task $\tau$. Reporting $\mathrm{pass@}1$ and $\mathrm{pass@}3$ separately exposes the gap between one-shot reliability and short-horizon recoverability under the same memory demand. Empirically, M3A achieves the highest $\mathrm{pass@}1$ at 32.8\% while Agent-S2 reaches the highest $\mathrm{pass@}3$ at 49.2\%, whereas end-to-end models collapse to 0.0--6.2\%, quantifying how much of the memory-reliability gap is recoverable through retry-based self-correction versus genuinely unrecoverable~\cite{memguibench2026}. On top of $\mathrm{pass@}k$, \textbf{MemGUI-Eval} evaluates each trajectory through a three-stage \emph{Progressive Scrutiny} pipeline that starts from minimal evidence and deepens analysis only when necessary, producing seven hierarchical metrics that span short-term memory fidelity, long-term learning effectiveness, and execution efficiency; the pipeline reaches 95.9\% F1 agreement with human experts at roughly \$0.031 per trajectory, making cross-temporal memory reliability measurable at scale~\cite{memguibench2026}. Together, these memory-conditioned benchmarks broaden reliability beyond static grounding toward remembered state and separate one-shot reliability from retry-based recovery. Their limitation is that they do not yet integrate cross-session memory drift, adversarial memory poisoning, and action correctness under a unified reliability benchmark.
+
+\textbf{Coverage gaps.} The reliability coverage gap is therefore a compositional one. Current benchmarks separately stress initial-state perturbation, live-web temporal drift, and memory-conditioned execution, but none jointly measures how these factors interact over long horizons or across repeated sessions. Reliability evidence is broader than privacy or accountability, yet it still lacks a unified protocol for distribution shift, memory drift, recoverability, and action correctness in the same benchmark.
 
 \blocksubsubsection{Controllability}
 
-Controllability assesses whether the agent respects authority boundaries, follows permission constraints, and supports staged human intervention. \textbf{ST-WebAgentBench}'s \emph{Completion under Policy} (CuP) metric is the clearest operationalization. For a task $\tau$ with policy constraint set $\mathcal{P}$:
+Controllability benchmarks ask whether the agent completes the task only within its allowed authority envelope. The clearest direct benchmark is \textbf{ST-WebAgentBench}, which evaluates web-agent task success under explicit policy constraints by pairing 222 enterprise-style tasks with Safety-Trust policies across six orthogonal dimensions (User-Consent, Boundary, Strict Execution, Hierarchy, Robustness, Error Handling)~\cite{stwebagentbench2025}. It reports two paired metrics. \emph{Completion under Policy} (CuP) credits task completion only when the agent simultaneously adheres to all policy dimensions:
 \begin{equation}
 \mathrm{CuP}(\tau) = \mathrm{TaskSuccess}(\tau) \times \prod_{p \in \mathcal{P}} \mathbf{1}[\mathrm{compliant}(\tau, p)]
 \label{eq:cup}
 \end{equation}
-This formulation credits task completion only when the agent simultaneously adheres to all policy dimensions---including data privacy, content restrictions, and operational compliance~\cite{stwebagentbench2025}. \textbf{BeSafe-Bench} evaluates behavioral safety across four platform domains (web, mobile, embodied VLM, embodied VLA) and nine risk categories, finding that the best agent completes fewer than 40\% of tasks while respecting safety constraints~\cite{besafebench2026}. The \textbf{STEVE} step-verification framework from Section~4 provides task-level controllability measurement, but its coverage is limited to web browsing rather than the full CUA action space~\cite{steve2025}. \textbf{ATBench-Claw} contains approval-sensitive and scope-sensitive trajectory labels in OpenClaw workflows~\cite{atbenchclaw2026}, but these are better read as post-hoc diagnostic slices than as direct controllability metrics. Even so, no current benchmark systematically measures the full controllability design stack described in Section~4---authority scoping, step verification, runtime enforcement, and structural separation---as an integrated evaluation target.
+and \emph{Risk Ratio} (RR) quantifies the mean rate of policy-dimension violations across evaluated trajectories:
+\begin{equation}
+\mathrm{RR} = \frac{1}{|\mathcal{T}_{\mathrm{eval}}|\,|\mathcal{P}|}\sum_{\tau \in \mathcal{T}_{\mathrm{eval}}}\sum_{p \in \mathcal{P}} \mathbf{1}[\neg\,\mathrm{compliant}(\tau, p)]
+\label{eq:rr}
+\end{equation}
+where $\mathcal{P}$ is the policy set spanning the six ST dimensions. CuP captures capability-plus-compliance as a hard gate, RR captures the continuous severity of violations even when CuP collapses to zero; together they separate ``can the agent finish inside its envelope'' from ``how often does it leak out of the envelope.'' Empirically, across three open state-of-the-art agents, mean CuP falls below two-thirds of nominal completion rate~\cite{stwebagentbench2025}, exposing a persistent safety-completion gap. The benchmark therefore measures controllability as joint capability-plus-policy compliance rather than as refusal alone. Its contribution is conceptual clarity: it makes policy obedience part of task success itself. Its limitation is scope, because it currently covers only three web agents and does not extend to the broader desktop, mobile, or OpenClaw-style action space.
+
+That direct benchmark story broadens in \textbf{BeSafe-Bench}, which moves from web tasks to behavioral safety across four platform domains --- Web, Mobile, Embodied VLM, and Embodied VLA --- augmented with nine safety-critical risk categories and evaluated over 13 LLM-driven agents~\cite{besafebench2026}. Of these four domains, only \textbf{Web and Mobile are directly CUA-native}, while \textbf{Embodied VLM and Embodied VLA are adjacent evidence from situated-agent settings} whose action surface is the physical or simulated world rather than an OS-level interface. Unlike ST-WebAgentBench's hard-gate CuP, BeSafe-Bench reports three complementary metrics computed from a hybrid rule-based and LLM-as-judge evaluator: a task-level \emph{Success Rate} (SR), a \emph{Safety Rate}
+\begin{equation}
+\mathrm{SafeRate} = \frac{|\{\tau \in \mathcal{T}_{\mathrm{eval}} : \mathrm{safe}(\tau)\}|}{|\mathcal{T}_{\mathrm{eval}}|}
+\label{eq:saferate}
+\end{equation}
+that counts trajectories with no environmental safety violation, and their \emph{joint distribution} over the four outcome cells $\{\mathrm{success}\} \times \{\mathrm{safe}\}$, exposing how often task performance coincides with safety violation rather than collapsing into a single number. The headline result is that even the best-performing agent completes fewer than 40\% of tasks while fully adhering to safety constraints, and strong task performance frequently coincides with severe safety violations~\cite{besafebench2026}. Its contribution is breadth across situated settings and the joint success-safety distribution; its limitation is that it still does not decompose where the failure arises within the authority stack --- policy specification, step verification, or runtime enforcement.
+
+Adjacent evidence fills in parts of that stack without yet becoming a unified controllability benchmark. \textbf{STEVE} is a step-verification training pipeline rather than a benchmark: it uses GPT-4o as a step-level verifier to assign per-action binary correctness labels over collected trajectories and then optimizes the agent under Kahneman--Tversky Optimization on these dense signals~\cite{steve2025}. \textbf{CUARewardBench} complements this by benchmarking the calibration of those verification signals: it evaluates both outcome reward models (ORM, trajectory-level) and process reward models (PRM, step-level) on CUA trajectories spanning 10 software categories and 7 agent architectures, using reward-model precision against ground-truth correctness as its headline metric and introducing Unanimous Prompt Ensemble to improve PRM calibration~\cite{cuarewardbench2025}. \textbf{ATBench-Claw} contributes the controllability-sensitive slice of a trajectory-level cross-cutting benchmark, in which approval-bypass and scope-violation failure modes appear as taxonomy-indexed entries rather than as a standalone controllability metric~\cite{atbenchclaw2026}; the full three-dimensional taxonomy is described in §\ref{sec:evidence-types} as a cross-cutting evidence family. \textbf{SafeArena} adds harmful-task evaluation on 250 safe plus 250 harmful web tasks across five harm categories, scored under the Agent Risk Assessment framework and aggregated into a \emph{Normalized Safety Score} that combines safe-task completion with harmful-task refusal~\cite{safearena2025}. Together these systems expose verification, judge calibration, escalation, and approval-sensitive failures, but they are not yet integrated into a single benchmark that measures the full controllability design stack described in Section~4.
+
+\textbf{Coverage gaps.} The controllability coverage gap lies in end-to-end integration. Existing evidence measures policy compliance, safety-constrained behavior, verifier calibration, and approval-sensitive trajectory slices, but no benchmark evaluates the full control stack from authority scoping and permission gating to step verification, runtime enforcement, escalation, and structural separation. Controllability is therefore partially measured at several layers without a coherent system-level target.
 
 \blocksubsubsection{Accountability}
 
-Accountability evaluates whether agent decisions can be reconstructed, audited, and attributed after execution. We formalize this goal with the \emph{Audit Coverage Ratio} (ACR), a trajectory-level metric over the agent's action trajectory $\mathcal{T} = (a_1, a_2, \ldots, a_n)$:
+Accountability has the weakest benchmark story of the five goals. No current benchmark directly instantiates accountability as a first-class metric; what exists today is a formal metric definition, a small amount of engineering-side runtime evidence, and a pointer to the trajectory-level cross-cutting family in §\ref{sec:evidence-types}. We formalize accountability with the \emph{Audit Coverage Ratio} (ACR), a trajectory-level metric over the agent's action trajectory $\mathcal{T} = (a_1, a_2, \ldots, a_n)$:
 \begin{equation}
 \mathrm{ACR}(\mathcal{T}) = \frac{|\{a_i \in \mathcal{T} : \mathrm{logged}(a_i) \wedge \mathrm{attributable}(a_i)\}|}{|\mathcal{T}|}
 \label{eq:acr}
 \end{equation}
-where $\mathrm{logged}(a_i)$ indicates the action was recorded with sufficient context for reconstruction, and $\mathrm{attributable}(a_i)$ indicates the decision can be traced to a specific input, policy, or reasoning step. This is the least benchmarked of the five goals. \textbf{ClawAudit} provides trajectory-level traces that expose uncertainty under underspecified intent~\cite{clawaudit2026}. OpenClaw PRISM logs session-scoped risk accumulation across lifecycle hooks~\cite{openclawprism2026}. OS-Sentinel contributes runtime monitoring evidence by detecting and blocking unsafe GUI actions before execution~\cite{ossentinel2025}. The \textbf{Clawdbot Safety Audit}~\cite{clawaudit2026} offers the closest precedent for trajectory-based accountability evaluation: it logs complete interaction trajectories---messages, tool-call arguments, and outputs---across six risk dimensions and applies an automated trajectory judge, achieving only a 58.9\% overall pass rate across 34 test cases, with failures concentrated in ambiguous and adversarial scenarios. Notably, its \emph{user-facing deception} dimension---where the agent falsely claims task success or substitutes hallucinated outputs for tool results---exposes a trust violation that spans both reliability and accountability and is not captured by any existing benchmark metric. \textbf{ATBench-Claw} provides adjacent rather than direct accountability evidence: it evaluates safe / unsafe classification and taxonomy diagnosis, not audit-trail completeness, reconstruction fidelity, or attribution quality. Its relevance here is that it treats \emph{Compliance, Legal, and Auditability Harm} as an explicit harm class and operationalizes a form of failure attribution over risk source, failure mode, and harm type~\cite{atbenchclaw2026}. Accountability nevertheless remains the least standardized of the five goals: no benchmark directly measures audit trail completeness, no reproducible test suite scores trajectory reconstruction fidelity, and no formal evaluation isolates how well governance policies translate into observable runtime compliance.
+where $\mathrm{logged}(a_i)$ indicates the action was recorded with sufficient context for reconstruction, and $\mathrm{attributable}(a_i)$ indicates the decision can be traced to a specific input, policy, or reasoning step. A coarser complement, the \emph{Trajectory Pass Rate}, summarizes audit verdicts over a set of evaluated trajectories:
+\begin{equation}
+\mathrm{TPR} = \frac{|\{\tau \in \mathcal{T}_{\mathrm{eval}} : \mathrm{pass}(\tau)\}|}{|\mathcal{T}_{\mathrm{eval}}|}
+\label{eq:tpr}
+\end{equation}
+where $\mathcal{T}_{\mathrm{eval}}$ is the set of evaluated trajectories and $\mathrm{pass}(\tau)$ is an automated or human audit verdict on the full trajectory. These metrics clarify what an accountability benchmark would need to measure, reconstruction completeness, attribution fidelity, and trajectory-level audit verdicts, but neither ACR nor TPR is yet instantiated by a dedicated benchmark.
 
-\subsection{Evidence types and evaluation paradigms}
+The existing evidence is therefore operational rather than benchmark-driven. On the engineering side, \textbf{OpenClaw PRISM} contributes lifecycle-hook logging with session-scoped risk accumulation and TTL decay~\cite{openclawprism2026}, and \textbf{OS-Sentinel} contributes attributable runtime block / review decisions in mobile GUI workflows~\cite{ossentinel2025}. These systems measure important parts of accountability in practice, especially logging and attributable intervention, but they are deployment-time engineering evidence rather than standardized benchmarks with comparable cross-system metrics. The nearest benchmark-adjacent signal remains the trajectory-level cross-cutting family discussed in §\ref{sec:evidence-types}, which supports failure diagnosis without directly measuring audit-trail completeness or reconstruction fidelity. Accountability therefore remains the least standardized of the five goals.
 
-The CUA field produces trustworthiness evidence through five distinct paradigms, each with characteristic strengths and limitations.
+\textbf{Coverage gaps.} The accountability coverage gap is the most fundamental: the field still lacks ground-truth audit corpora and thus lacks comparable benchmark metrics for reconstruction completeness, attribution fidelity, and governance-compliance tracing. Existing systems show that logging and attributable intervention are implementable, and trajectory-level diagnosis offers adjacent evidence, but no current suite tests whether an independent auditor can reliably reconstruct why a CUA acted, under what policy, and with what downstream responsibility.
 
-\textbf{Capability benchmarks} such as OSWorld~\cite{osworld2024}, Windows Agent Arena~\cite{windowsarena2024}, WebArena~\cite{webarena2023}, WebVoyager~\cite{webvoyager2024}, and AndroidWorld~\cite{androidworld2024} evaluate whether agents can complete open-ended computer tasks under realistic interaction constraints. Online-Mind2Web~\cite{onlinemind2web2025} adds live-web difficulty. These benchmarks primarily measure task success and do not directly assess trustworthiness, but they provide the baseline against which trust-related costs must be evaluated. A system that scores high on SafeArena but fails basic tasks is not meaningfully trustworthy; it is merely inactive. Among capability benchmarks, OSWorld occupies a distinctive role: it is currently the only suite on which essentially every major CUA family---perception--action models, open frameworks, large-scale training pipelines, and commercial systems---has been independently evaluated, and is therefore the de facto cross-system capability anchor used throughout this survey. We elevate it to that role not because it measures trustworthiness (it does not) but because it is the only benchmark that supports a credible cross-family comparison. Table~\ref{tab:osworld-landscape} consolidates reported OSWorld results for the system families covered in Sections~3--7 and shows that capability has progressed from roughly 12\% (GPT-4V at the original release) to above 70\% in under two years~\cite{osworld2024,agents32026,anthropicclaude46}. The capability side continues to widen through Agent~S2~\cite{agents22025}, Agent~S3~\cite{agents32026}, OpenCUA~\cite{opencua2025}, ScaleCUA~\cite{scalecua2025}, ComputerRL~\cite{computerrl2025}, PC Agent-E~\cite{pcaegente2025}, DART-GUI~\cite{dartgui2025}, EvoCUA~\cite{evocua2026}, GTA1~\cite{gta12025}, and Agent Alpha~\cite{agentalpha2026}, which emphasize compositional routing, reinforcement learning, and test-time scaling.
+\subsection{Coverage analysis and evidence gaps}
+\label{sec:evidence-types}
+
+Table~\ref{tab:coverage-gaps} crosses the five trustworthiness goals of Definition~2 against five goal-aligned evidence types: capability benchmarks, safety benchmarks, memory benchmarks, ecosystem harnesses, and deployment audits. Trajectory-level cross-cutting evidence is treated separately below because its unit of analysis is the full trajectory and its taxonomy spans multiple goals by construction. The point of the matrix is not to relist the literature, but to show which goals are supported by direct, comparable evidence and which are still served only indirectly, narrowly, or sporadically.
+
+Two evidence types play anchor roles for the rest of the analysis. On the capability side, OSWorld~\cite{osworld2024} evaluates whether agents can complete realistic computer tasks at all. It sits within a broader capability-benchmark layer that includes Windows Agent Arena~\cite{windowsarena2024}, AndroidWorld~\cite{androidworld2024}, and Online-Mind2Web~\cite{onlinemind2web2025}; WebArena and WebVoyager provide complementary web-focused capability evidence~\cite{webarena2023,webvoyager2024}. OSWorld is distinctive because it is the only benchmark on which essentially every major CUA family has been independently evaluated, which makes it the cross-system capability anchor used throughout this survey. We therefore use OSWorld not as a trust benchmark, but as the common reference point against which trust-related costs must later be read. Table~\ref{tab:osworld-landscape} consolidates the reported OSWorld results for the system families covered in Sections~3--7. The trajectory of the table is the main point: capability has moved from roughly 12\% at the original release to above 70\% in later reports.
 
 \begin{table}[!ht]
 \centering
@@ -1307,67 +1397,61 @@ The CUA field produces trustworthiness evidence through five distinct paradigms,
 \midrule
 \multicolumn{3}{@{}l}{\emph{Published Baselines (Original Protocol)}} \\
 \midrule
-GPT-4V~\cite{osworld2024}            & 12.24\% & OSWorld release reference \\
-GPT-4o~\cite{osworld2024}            & 11.36\% & \\
-Gemini-Pro~\cite{osworld2024}        & 2.37\%  & \\
 CogAgent~\cite{cogagent2023}         & 1.11\%  & Early GUI-grounded model \\
+Gemini-Pro~\cite{osworld2024}        & 2.37\%  & \\
 SeeClick~\cite{seeclick2024}         & 9.21\%  & \\
-UI-TARS-72B~\cite{uitars2025}        & SOTA at release & Large gain over prior models \\
+GPT-4o~\cite{osworld2024}            & 11.36\% & \\
+GPT-4V~\cite{osworld2024}            & 12.24\% & OSWorld release reference \\
 Agent~S2~\cite{agents22025}          & 34.5\%  & Backbone: Claude 3.7 \\
-ComputerRL (AutoGLM-9B)~\cite{computerrl2025} & 48.9\% & \\
 OpenCUA-72B~\cite{opencua2025}       & 45.0\% & \\
+ComputerRL (AutoGLM-9B)~\cite{computerrl2025} & 48.9\% & \\
 EvoCUA-32B~\cite{evocua2026}         & 56.7\% & Reported open SOTA at release \\
 ScaleCUA-32B~\cite{scalecua2025}     & 59.2\% & \\
+UI-TARS-72B~\cite{uitars2025}        & SOTA at release & Large gain over prior models \\
 \midrule
 \addlinespace[1pt]
 \multicolumn{3}{@{}l}{\emph{Post-Release / Variant Results}} \\
 \midrule
+Claude 3.7 (computer use)~\cite{anthropic2025computeruse} & 28\% & As reported by Agent~S2 evaluation \\
+UFO2~\cite{ufo2025}                   & 32.7\%$^{\S}$ & $\S$ Windows subset of OSWorld \\
+OpenAI CUA / Operator~\cite{openai2025cua} & 38.1\% / 42.9\%$^{\ddagger}$ & $\ddagger$ updated with o3 backbone \\
 UI-TARS-1.5~\cite{uitars2025}        & 42.5\%   & Successor release \\
 ScaleCUA-32B~\cite{scalecua2025}     & 60.6\%$^{\dagger}$ & Updated protocol \\
 Agent~S3~\cite{agents32026}          & 62.6\% / 69.9\%$^{\ddagger}$ & GPT-5 backbone; $\ddagger$ best-of-$N$ \\
-UFO2~\cite{ufo2025}                   & 32.7\%$^{\S}$ & $\S$ Windows subset of OSWorld \\
-OpenAI CUA / Operator~\cite{openai2025cua} & 38.1\% / 42.9\%$^{\ddagger}$ & $\ddagger$ updated with o3 backbone \\
-Claude 3.7 (computer use)~\cite{anthropic2025computeruse} & 28\% & As reported by Agent~S2 evaluation \\
 Claude Opus 4.6$^{*}$~\cite{anthropicclaude46} & 72.7\% & $*$ Vendor-reported; current self-reported SOTA \\
 \bottomrule
 \end{tabularx}
 \par\smallskip
-\noindent\parbox{\columnwidth}{\footnotesize \emph{Note.} OSWorld is the only benchmark on which essentially all of these system families have been independently evaluated, which is why we use it as the cross-system capability anchor. Results are grouped into \emph{published baselines} (numbers reported in the original system papers under the standard OSWorld protocol) and \emph{post-release / variant results} (subsequent updates, best-of-$N$ protocols, subset reports, or vendor-reported numbers). Cross-paper numerical comparisons require caution unless results use the same OSWorld version, a comparable inference budget, and the same observation modality. The table is intended as a coverage map rather than a strict leaderboard. Human baseline on OSWorld is 72.36\%~\cite{osworld2024}.}
+\noindent\parbox{\columnwidth}{\footnotesize \emph{Note.} \emph{Published baselines} are results reported under the original OSWorld protocol. \emph{Post-release / variant results} include updated protocols, subsets, best-of-$N$ settings, or vendor-reported numbers. Within each block, numeric entries are ordered from low to high by the leading reported SR; qualitative entries follow the numeric rows. Cross-paper comparisons still require caution. Human baseline on OSWorld is 72.36\%~\cite{osworld2024}.}
 \end{table}
 
-\textbf{Safety benchmarks} directly evaluate trustworthiness by measuring whether agents refuse harmful tasks, avoid unsafe execution, and remain policy-compliant under realistic conditions. Representative suites include SafeArena~\cite{safearena2025}, OS-Harm~\cite{osharm2025}, WASP~\cite{wasp2025}, AgentHarm~\cite{agentharm2024}, and ATBench-Claw~\cite{atbenchclaw2026}. ST-WebAgentBench~\cite{stwebagentbench2025}, SecureWebArena~\cite{securewebarena2025}, and OpenAgentSafety~\cite{openagentsafety2025} extend this evidence base to more policy-conditioned and deployment-oriented settings. Together these benchmarks cover prompt injection, social engineering, harmful action execution, policy violation, and, in ATBench-Claw's case, OpenClaw-sensitive trajectory risks spanning tools, skills, sessions, and external actions. BeSafe-Bench~\cite{besafebench2026} extends this to behavioral safety in situated environments spanning web, mobile, and embodied platforms. Personalized-agent evaluations such as From Assistant to Double Agent~\cite{doubleagent2026} sharpen the realism problem further by showing that benchmark assumptions change once the agent is local, user-adapted, and long-horizon. For accountability, however, ATBench-Claw should be read only as adjacent evidence: its core task is safe / unsafe classification plus taxonomy diagnosis, not auditability measurement. Within this evidence type, SafeArena plays a counterpart role to OSWorld: it is the safety benchmark that most directly measures harmful execution, refusal behavior, and the resulting normalized safety score, on a panel of widely deployed base models. Table~\ref{tab:safearena-landscape} reports SafeArena's per-model results. We elevate it to anchor status not because its coverage is broad---it is in fact narrow, with only five evaluated models---but because its three-axis measurement makes the safety/capability trade-off legible in a way that purely binary attack-success rates do not. This evidence type provides the strongest current coverage of the security goal but remains sparse for privacy, controllability, and accountability, and in particular almost none of the capability-frontier systems in Table~\ref{tab:osworld-landscape} appear in Table~\ref{tab:safearena-landscape}.
+Direct trust evidence has a much weaker anchor. OS-Harm~\cite{osharm2025} is the clearest direct-safety anchor because it jointly reports unsafe-action rates across three disjoint threat categories---deliberate user misuse, prompt injection, and model misbehavior---on a common task panel of agentic computer-use settings. Other suites broaden that safety layer in different directions: SafeArena and WASP focus on harmful task completion and content hijacking~\cite{safearena2025,wasp2025}; ST-WebAgentBench and OpenAgentSafety add policy-conditioned and deployment-oriented settings~\cite{stwebagentbench2025,openagentsafety2025}; BeSafe-Bench and PASB extend the picture to broader behavioral safety and personalized indirect prompt injection~\cite{besafebench2026,doubleagent2026}. We elevate OS-Harm here because it exposes the attack-category axis of the safety--capability trade-off in a way that a single aggregated ASR does not. Table~\ref{tab:osharm-landscape} reports the benchmark's per-model results and shows how sharply unsafe-action rates can diverge across threat categories even among models that occupy broadly similar capability tiers.
 
-\begin{table}[!ht]
+\begin{table*}[!ht]
 \centering
-\caption{SafeArena~\cite{safearena2025} safety landscape. \emph{Harmful Task Completion} is the fraction of attacker-supplied harmful tasks the model successfully executes (lower is safer); \emph{Refusal Rate} is the fraction of harmful tasks the model declines (higher is safer); \emph{NSS} (Normalized Safety Score) aggregates safe-task completion against harmful-task refusal into a single safety-aware metric. Coverage is limited to five base models; no end-to-end CUA frameworks (Agent~S2/S3, OpenCUA, ScaleCUA, etc.) appear in this benchmark.}
-\label{tab:safearena-landscape}
+\caption{Per-model safety landscape on OS-Harm~\cite{osharm2025}. Arrows give the safer direction per column; under \emph{Deliberate User Misuse} the original task is itself harmful, so completion is undesirable. Bold marks the best value in each column. Numbers are reported as in the OS-Harm main evaluation.}
+\label{tab:osharm-landscape}
 \footnotesize
-\setlength{\tabcolsep}{6pt}
+\setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.15}
-\begin{tabular}{@{}lccc@{}}
+\begin{tabular}{@{}lcccccccc@{}}
 \toprule
-\textbf{Model} & \textbf{Harmful Task Completion $\downarrow$} & \textbf{Refusal Rate $\uparrow$} & \textbf{NSS} \\
+ & \multicolumn{2}{c}{\textbf{Deliberate User Misuse}} & \multicolumn{2}{c}{\textbf{Prompt Injection}} & \multicolumn{2}{c}{\textbf{Model Misbehavior}} & \textbf{Average} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-8}
+\textbf{Agent LLM} & Unsafe $\downarrow$ & Completed $\downarrow$ & Unsafe $\downarrow$ & Completed $\uparrow$ & Unsafe $\downarrow$ & Completed $\uparrow$ & Unsafe $\downarrow$ \\
 \midrule
-Claude-3.5-Sonnet  & $\sim$6.2\%  & 64.0\% & 55.0 \\
-GPT-4o             & 22.8\%       & 31.4\% & 31.7 \\
-GPT-4o-Mini        & $\sim$30\%   & 30.0\% & 35.7 \\
-Qwen-2-VL-72B      & 26.0\%       & 0.7\%  & 21.5 \\
-Llama-3.2-90B      & ---          & 11.4\% & 34.0 \\
+o4-mini            & 52\%          & 24\%          & 20\%         & 54\%          & 10\%         & 38\%          & 27\% \\
+GPT-4.1            & \textbf{48\%} & \textbf{20\%} & 12\%         & 54\%          & \textbf{4\%} & 24\%          & \textbf{21\%} \\
+Claude 3.7 Sonnet  & 70\%          & 50\%          & 10\%         & 32\%          & 8\%          & 24\%          & 29\% \\
+Gemini 2.5 Pro     & 64\%          & 40\%          & 8\%          & \textbf{72\%} & 8\%          & \textbf{50\%} & 27\% \\
+Gemini 2.5 Flash   & 70\%          & 28\%          & \textbf{2\%} & 34\%          & 6\%          & 20\%          & 26\% \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
-Reading the two tables together yields three observations that motivate the rest of this section. First, the two evaluated populations are largely disjoint: of the systems in Table~\ref{tab:osworld-landscape}, only the commercial Claude and GPT-4o families overlap with Table~\ref{tab:safearena-landscape}, while every open training pipeline, every compositional framework, and every dedicated UI model on the capability frontier has no direct safety counterpart. Second, even within the overlapping models the spread is striking: Claude-3.5-Sonnet refuses 64\% of harmful tasks while GPT-4o refuses only 31.4\%, and Qwen-2-VL-72B refuses essentially none, even though all three sit in roughly the same general capability tier. Trustworthiness is therefore not predicted by capability. Third, OSWorld scores have moved from 12.24\% to above 70\% in under two years, while SafeArena's harmful task completion rates remain in the double digits for most evaluated models---capability has scaled much faster than the trustworthiness evidence about the systems doing the scaling.
+Read together, the two anchor tables expose the central mismatch in current CUA evaluation. The capability-evaluated systems and the trust-evaluated systems are still largely disjoint; even when the same vendor families appear on both sides, capability does not predict trustworthiness; and capability has scaled much faster than the trust evidence about the systems doing the scaling.
 
-\textbf{Memory and personalization benchmarks} evaluate how cross-session state affects agent behavior. Truly CUA-native memory evaluation remains scarce and is currently limited to two layers: at the policy layer, MemGUI-Bench~\cite{memguibench2026} stresses memory-dependent GUI tasks, with 89.8\% of its 128 mobile-app tasks requiring cross-temporal or cross-spatial memory retention; at the judge layer, CUARewardBench~\cite{cuarewardbench2025} evaluates whether reward models can correctly score memory-conditioned trajectories. These benchmarks do not yet systematically evaluate privacy risks from retained data or poisoning vulnerabilities in memory stores. ATBench-Claw partially narrows that gap by treating persistent memory / session-state contamination as a standardized trajectory-safety risk source in OpenClaw workflows~\cite{atbenchclaw2026}, but it is not yet a dedicated memory-trust benchmark with explicit longitudinal retention, leakage, or poisoning-persistence metrics.
-
-\textbf{Ecosystem evaluation harnesses} have emerged from the OpenClaw community as a response to the need for deployment-level evidence. PinchBench~\cite{pinchbench2026} organizes public comparison on real OpenClaw tasks; Claw-Eval~\cite{claweval2026} tightens the evidence bar with human-verified tasks and repeated-trial pass criteria; ClawBench~\cite{clawbench2026} favors fixed fixtures and deterministic scoring. ResearchClawBench~\cite{researchclawbench2026} extends this infrastructure into specialized research domains. The picture is now more nuanced than a pure capability-only story: the harnesses themselves remain centered on capability and pass-rate measurement, but ATBench-Claw adds benchmark-level trust evidence from within the OpenClaw ecosystem by testing trajectory safety over tools, skills, sessions, and external actions, including supply-chain, session-state, approval, and cross-tool failure modes~\cite{atbenchclaw2026}. What remains missing is ecosystem-wide evaluation of marketplace provenance, cross-agent propagation, and longitudinal governance under shared skill ecosystems.
-
-\textbf{Deployment audits and engineering evidence} constitute a fifth evidence type that does not fit the benchmark paradigm but provides indispensable trustworthiness knowledge. Trajectory-level audits~\cite{clawaudit2026}, lifecycle-oriented security analyses~\cite{tamingopenclaw2026}, MCP threat models~\cite{hou2025mcp}, and runtime enforcement logs~\cite{openclawprism2026} all produce evidence that cannot be captured by fixed task suites. Internal Safety Collapse~\cite{internalsafetycollapse2026} shows that frontier models can generate harmful intermediate artifacts during otherwise legitimate workflows when task structure itself requires them, suggesting that benchmark suites centered on explicit malicious intent may miss an important class of deployment risk. This evidence type is essential for the accountability and controllability goals, where standardized benchmarks do not yet exist. ATBench-Claw~\cite{atbenchclaw2026} represents an early step toward closing that gap: by benchmarking whether guardrail models can correctly classify and diagnose OpenClaw trajectories, it effectively upgrades ad hoc trajectory audits into a standardized judge benchmark---shifting deployment evidence from non-reproducible case studies toward reproducible, metric-driven evaluation of the safety monitoring layer itself.
-
-\subsection{Coverage analysis and evidence gaps}
-
-Table~\ref{tab:coverage-gaps} crosses the five trustworthiness dimensions of Definition~2 against the five evidence types to produce a coverage map, revealing where the field has accumulated meaningful evidence and where standardized evaluation remains absent.
+The remaining four columns explain why the matrix is fragmented rather than empty. Memory and personalization benchmarks remain narrow and mostly task-centric. MemGUI-Bench measures memory-dependent GUI tasks, while CUARewardBench evaluates reward-model calibration on memory-conditioned trajectories~\cite{memguibench2026,cuarewardbench2025}. Ecosystem harnesses add deployment-facing pass-rate evidence in OpenClaw-style environments, but not yet ecosystem-wide provenance or propagation evaluation. PinchBench and Claw-Eval illustrate the basic harness layer~\cite{pinchbench2026,claweval2026}. ClawBench and ResearchClawBench extend that layer toward more controlled and research-facing settings~\cite{clawbench2026,researchclawbench2026}. Deployment audits and engineering evidence contribute indispensable operational knowledge but do not yield comparable benchmark scores. Lifecycle security analyses and MCP threat models describe the deployment surface~\cite{tamingopenclaw2026,hou2025mcp}. Runtime enforcement logs and internal-safety case studies expose risks that fixed task suites miss~\cite{openclawprism2026,internalsafetycollapse2026}. Trajectory-level benchmarks such as ClawAudit and ATBench-Claw add full-trajectory diagnosis across multiple risk types~\cite{clawaudit2026,atbenchclaw2026}. Because their taxonomy spans multiple goals by construction, we treat trajectory safety as a cross-cutting evaluation lens rather than as a sixth trustworthiness dimension. On that basis, Table~\ref{tab:coverage-gaps} distinguishes where evidence is missing from where it exists but remains narrow, indirect, or incomparable.
 
 \begin{table*}[!ht]
 \centering
@@ -1449,15 +1533,15 @@ Third, the cross-boundary coupling table in Section~2 identifies directional asy
 \subsection{CUA-native evaluation methodology}
 \label{sec:future-evaluation}
 
-The coverage analysis in Section~8.3 reveals structural gaps that cannot be closed by incremental extension of existing benchmarks. Accountability remains weakly benchmarked. Privacy evaluation is critically sparse. Ecosystem-sensitive security evaluation has started to appear, but ecosystem-wide and longitudinal coverage remain absent. These gaps reflect not just missing benchmarks but missing evaluation paradigms.
+The coverage analysis above reveals structural gaps that cannot be closed by incremental extension of existing benchmarks. Accountability remains weakly benchmarked. Privacy evaluation is critically sparse. Ecosystem-sensitive security evaluation has started to appear, but ecosystem-wide and longitudinal coverage remain absent. These gaps reflect not just missing benchmarks but missing evaluation protocols for longitudinal, ecosystem-level, and accountability-sensitive evidence.
 
 \smallskip
 \noindent\textbf{Longitudinal evaluation.}
-Most current benchmarks evaluate bounded-session interactions rather than true longitudinal deployment. Yet the trust risks documented in this survey, including memory staleness (Eq.~\ref{eq:stale}), progressive preference drift, and storage-to-steering attacks~\cite{storagetosteering2026}, are inherently longitudinal. A longitudinal evaluation paradigm would track trust properties across sessions, measuring how memory accumulation, preference drift, and policy evolution affect security, privacy, and reliability over time. PASB and ATBench-Claw provide useful starting points because both already encode cross-stage or session-sensitive risk structure~\cite{doubleagent2026,atbenchclaw2026}, but neither yet measures multi-session degradation, retention drift, or leakage persistence under a fixed long-running agent.
+Most current benchmarks evaluate bounded-session interactions rather than true longitudinal deployment. Yet the trust risks documented in this survey, including memory staleness (Eq.~\ref{eq:stale}), progressive preference drift, and storage-to-steering attacks~\cite{storagetosteering2026}, are inherently longitudinal. A longitudinal evaluation protocol would track trust properties across sessions, measuring how memory accumulation, preference drift, and policy evolution affect security, privacy, and reliability over time. PASB and ATBench-Claw provide useful starting points because both already encode cross-stage or session-sensitive risk structure~\cite{doubleagent2026,atbenchclaw2026}, but neither yet measures multi-session degradation, retention drift, or leakage persistence under a fixed long-running agent.
 
 \smallskip
 \noindent\textbf{Ecosystem-level red-teaming.}
-The coverage map (Table~\ref{tab:coverage-gaps}) now captures only part of the story: trajectory-safety benchmarks such as ATBench-Claw provide partial ecosystem-sensitive security evaluation inside the safety-benchmark column, but no evidence type yet provides ecosystem-wide propagation evaluation~\cite{atbenchclaw2026}. As skill ecosystems scale, and OpenClaw alone has accumulated thousands of community-contributed skills~\cite{openclaw2026}, the lack of systematic evaluation for marketplace-scale contamination, guidance injection, and cross-agent propagation becomes increasingly dangerous. An ecosystem red-teaming paradigm would test propagation dynamics across skill dependencies, measuring how quickly a compromised skill can affect downstream consumers and whether existing provenance mechanisms detect the contamination. The dependency-graph formalism from Section~6 (Eq.~\ref{eq:eco-risk}) provides a natural evaluation scaffold.
+The coverage map (Table~\ref{tab:coverage-gaps}) now captures only part of the story: trajectory-safety benchmarks such as ATBench-Claw provide partial ecosystem-sensitive security evaluation inside the safety-benchmark column, but no evidence type yet provides ecosystem-wide propagation evaluation~\cite{atbenchclaw2026}. As skill ecosystems scale, and OpenClaw alone has accumulated thousands of community-contributed skills~\cite{openclaw2026}, the lack of systematic evaluation for marketplace-scale contamination, guidance injection, and cross-agent propagation becomes increasingly dangerous. An ecosystem red-teaming protocol would test propagation dynamics across skill dependencies, measuring how quickly a compromised skill can affect downstream consumers and whether existing provenance mechanisms detect the contamination. The dependency-graph formalism from Section~6 (Eq.~\ref{eq:eco-risk}) provides a natural evaluation scaffold.
 
 \smallskip
 \noindent\textbf{Accountability benchmarks.}
@@ -1548,7 +1632,7 @@ The propagation-based vulnerability assessment framework~\cite{propagvuln2025} p
 % \midrule
 % CUA-native evaluation methodology (\S\ref{sec:future-evaluation})
 % & \S8 Table~\ref{tab:coverage-gaps}; coverage gaps in accountability, privacy, ecosystem
-% & Longitudinal evaluation paradigms; ecosystem red-teaming; accountability benchmarks
+% & Longitudinal evaluation protocols; ecosystem red-teaming; accountability benchmarks
 % & Trust--capability Pareto frontiers; multi-session degradation metrics; audit reconstruction fidelity
 % & Emerging \\
 % \midrule
@@ -1718,7 +1802,6 @@ Benchmarks \& Commercial Deployments &
 OSWorld~\cite{osworld2024},
 WebArena~\cite{webarena2023},
 AndroidWorld~\cite{androidworld2024},
-ScreenSpot-Pro~\cite{screenspotpro2025},
 \colorbox{evSaf!15}{SafeArena~\cite{safearena2025}},
 \colorbox{evSaf!15}{OS-Harm~\cite{osharm2025}},
 \colorbox{evSaf!15}{WASP~\cite{wasp2025}},
