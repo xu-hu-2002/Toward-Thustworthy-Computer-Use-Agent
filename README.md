@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="Toward-Trustworthy-Computer-Use-Agents.pdf"><img src="https://img.shields.io/badge/Preprint-PDF-red?logo=adobeacrobatreader&logoColor=white" alt="Preprint PDF"></a>
+  <a href="Toward-Trustworthy-Computer-Use-Agent.pdf"><img src="https://img.shields.io/badge/Preprint-PDF-red?logo=adobeacrobatreader&logoColor=white" alt="Preprint PDF"></a>
 </p>
 
 <p align="center"><img src="figures/case_study.png" alt="Figure 1: Case study" width="1000" /></p>
