@@ -5,9 +5,6 @@
 </p>
 
 <p align="center">
-  <a href="Toward-Trustworthy-Computer-Use-Agent.pdf">
-    <img src="https://img.shields.io/badge/Preprint-PDF-red?logo=adobeacrobatreader&logoColor=white" alt="Preprint PDF">
-  </a>
   <a href="https://doi.org/10.13140/RG.2.2.19686.79686">
     <img src="https://img.shields.io/badge/ResearchGate-Preprint-00CCBB?logo=researchgate&logoColor=white" alt="ResearchGate">
   </a>
