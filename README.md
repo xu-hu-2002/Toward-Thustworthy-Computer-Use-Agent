@@ -1,4 +1,4 @@
-# <img src="figures/koala.png" alt="koala" width="50" height="50" /> Toward Trustworthy Computer-Use Agents: Trust Boundaries, Formal Analysis, Evaluation Gaps, and Governance
+# <img src="figures/koala.png" alt="koala" width="50" height="50" /> Toward Trustworthy Computer-Use Agents: Trust Boundaries, Formal Analysis, Evaluation Gaps, and Human Governance
 
 <p align="center">
   <em>University of California, Davis &nbsp;·&nbsp; The University of Texas at Dallas</em>
