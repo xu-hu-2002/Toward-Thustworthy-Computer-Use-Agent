@@ -36,7 +36,7 @@ If you find this survey or repository useful, please cite our work:
  
 ```bibtex
 @misc{trustworthy_cua_2026,
-  title        = {Toward Trustworthy Computer-Use Agents: Trust Boundaries, Formal Analysis, Evaluation Gaps, and Governance},
+  title        = {Toward Trustworthy Computer-Use Agents: Trust Boundaries, Formal Analysis, Evaluation Gaps, and Human Governance},
   author       = {Xu Hu, Haoming Li, Sabbir Ahmed, Md Nahiyan Uddin, Qiannan Li, Jessica Ouyang, Latifur Khan, Feng Chen and Bingzhe Li},
   year         = {2026},
   month        = {May},
