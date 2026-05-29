@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://doi.org/10.13140/RG.2.2.19686.79686">
+  <a href="https://doi.org/10.13140/RG.2.2.24516.80000"> 
     <img src="https://img.shields.io/badge/ResearchGate-Preprint-00CCBB?logo=researchgate&logoColor=white" alt="ResearchGate">
   </a>
 </p>
