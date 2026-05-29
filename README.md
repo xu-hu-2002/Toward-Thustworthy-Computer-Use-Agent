@@ -40,8 +40,8 @@ If you find this survey or repository useful, please cite our work:
   author       = {Xu Hu, Haoming Li, Sabbir Ahmed, Md Nahiyan Uddin, Qiannan Li, Jessica Ouyang, Latifur Khan, Feng Chen and Bingzhe Li},
   year         = {2026},
   month        = {May},
-  doi          = {10.13140/RG.2.2.19686.79686},
-  url          = {https://doi.org/10.13140/RG.2.2.19686.79686},
+  doi          = {10.13140/RG.2.2.24516.80000},
+  url          = {https://www.researchgate.net/publication/405422774_Toward_Trustworthy_Computer-Use_Agents_Risk_Propagation_Evaluation_Gaps_and_Human_Governance?channel=doi&linkId=6a190f541d2edf444ddba073&showFulltext=true},
 }
 ```
 ## 🤝 Contributing
